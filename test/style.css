@@ -1,0 +1,23 @@
+#fixture table {
+  border-spacing: 0;
+  left: 136px;
+  position: absolute;
+  top: 32px;
+}
+
+#fixture td {
+  padding: 0;
+  width: 49px;
+}
+
+#fixture td + td {
+  width: 148px;
+}
+
+#fixture tr {
+  height: 81px;
+}
+
+#fixture tr + tr {
+  height: 69px;
+}
