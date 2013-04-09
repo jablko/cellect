@@ -99,12 +99,13 @@ function mouseup(event) {
     if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
       function callback(row) {
         function callback(cell) {
+          result = cell.textContent.trim();
 
           // http://tools.ietf.org/html/rfc4180
-          if (cell.textContent.indexOf('\n') !== -1 || cell.textContent.indexOf('"') !== -1) {
-            return '"' + cell.textContent.replace(/"/g, '""') + '"';
+          if (result.indexOf('\n') !== -1 || result.indexOf('"') !== -1) {
+            return '"' + result.replace(/"/g, '""') + '"';
           } else {
-            return cell.textContent;
+            return result;
           }
         }
 
