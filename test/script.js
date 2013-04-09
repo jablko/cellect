@@ -787,3 +787,18 @@ test('Trim whitespace', function () {
 
     $table.remove();
   });
+
+test('Collapse whitespace', function () {
+    var $table = $('<table><tr><td>a</td><td>b  \n\n  \n\n  c</td></tr></table>').appendTo('#fixture');
+
+    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
+
+    $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
+    $($table[0].rows[0].cells[1]).mouseenter();
+    $($table[0].rows[0].cells[1]).mouseup();
+
+    equal($('textarea').val(), 'a\t"b\nc"');
+
+    $table.remove();
+  });

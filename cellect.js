@@ -99,7 +99,10 @@ function mouseup(event) {
     if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
       function callback(row) {
         function callback(cell) {
-          result = cell.textContent.trim();
+          result = cell.textContent
+            .trim()
+            .replace(/\s*\n\s*/g, '\n')
+            .replace(/\s+/g, ' ');
 
           // http://tools.ietf.org/html/rfc4180
           if (result.indexOf('\n') !== -1 || result.indexOf('"') !== -1) {
