@@ -98,7 +98,15 @@ function mouseup(event) {
 
     if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
       function callback(row) {
-        function callback(cell) { return cell.textContent }
+        function callback(cell) {
+
+          // http://tools.ietf.org/html/rfc4180
+          if (cell.textContent.indexOf('\n') !== -1 || cell.textContent.indexOf('"') !== -1) {
+            return '"' + cell.textContent.replace(/"/g, '""') + '"';
+          } else {
+            return cell.textContent;
+          }
+        }
 
         if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
           var cells = Array.prototype.map.call(row.cells, callback);

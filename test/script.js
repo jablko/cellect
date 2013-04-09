@@ -742,3 +742,33 @@ test('Shift click same row', function () {
 
     equal($('textarea').val(), 'd\te\tf');
   });
+
+test('Quote', function () {
+    var $table = $('<table><tr><td>a</td><td>"</td></tr></table>').appendTo('#fixture');
+
+    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
+
+    $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
+    $($table[0].rows[0].cells[1]).mouseenter();
+    $($table[0].rows[0].cells[1]).mouseup();
+
+    equal($('textarea').val(), 'a\t""""');
+
+    $table.remove();
+  });
+
+test('Newline', function () {
+    var $table = $('<table><tr><td>a</td><td>\n</td></tr></table>').appendTo('#fixture');
+
+    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
+
+    $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
+    $($table[0].rows[0].cells[1]).mouseenter();
+    $($table[0].rows[0].cells[1]).mouseup();
+
+    equal($('textarea').val(), 'a\t"\n"');
+
+    $table.remove();
+  });
