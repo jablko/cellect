@@ -3,7 +3,11 @@
 // http://stackoverflow.com/questions/3680429/click-through-a-div-to-underlying-elements
 var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px double; display: none; pointer-events: none; position: absolute">').appendTo(document.body),
   $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
-  anchor, anchorOffset, table;
+  anchor, anchorOffset, table,
+  double = false, timeout, tableOffset;
+
+function leaveDouble() { double = false }
+function leaveTable() { $cellection.css('display', 'none') }
 
 function mousedown(event) {
   if (event.shiftKey) {
@@ -19,38 +23,53 @@ function mousedown(event) {
             .css({
               cursor: 'cell',
               'user-select': 'none' })
-            .on('mouseleave', mouseleave);
+            .on('mouseleave', leaveTable);
 
           getSelection().collapseToStart();
 
           var focusOffset = $(focus).offset();
 
-          if (focusOffset.top > anchorOffset.top) {
-            var bottom = focus,
-              bottomTop = focusOffset.top,
-              topTop = anchorOffset.top;
+          if (double && focus.cellIndex !== anchor.cellIndex) {
+            $cellection.css({
+              height: $(table).outerHeight() - 2.5,
+              top: tableOffset.top - 2.5 });
           } else {
-            var bottom = anchor,
-              bottomTop = anchorOffset.top,
-              topTop = focusOffset.top;
+            if (focusOffset.top > anchorOffset.top) {
+              var bottom = focus,
+                bottomTop = focusOffset.top,
+                topTop = anchorOffset.top;
+            } else {
+              var bottom = anchor,
+                bottomTop = anchorOffset.top,
+                topTop = focusOffset.top;
+            }
+
+            $cellection.css({
+              height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
+              top: topTop - 2.5 });
           }
 
-          if (focusOffset.left > anchorOffset.left) {
-            var leftLeft = anchorOffset.left,
-              right = focus,
-              rightLeft = focusOffset.left;
+          if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) {
+            $cellection.css({
+              left: tableOffset.left - 2.5,
+              width: $(table).outerWidth() - 2.5 });
           } else {
-            var leftLeft = focusOffset.left,
-              right = anchor,
-              rightLeft = anchorOffset.left;
+            if (focusOffset.left > anchorOffset.left) {
+              var leftLeft = anchorOffset.left,
+                right = focus,
+                rightLeft = focusOffset.left;
+            } else {
+              var leftLeft = focusOffset.left,
+                right = anchor,
+                rightLeft = anchorOffset.left;
+            }
+
+            $cellection.css({
+              left: leftLeft - 2.5,
+              width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
           }
 
-          $cellection.css({
-            display: '',
-            height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
-            left: leftLeft - 2.5,
-            top: topTop - 2.5,
-            width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
+          $cellection.css('display', '');
         } else {
           $cellection.css('display', 'none');
         }
@@ -79,6 +98,18 @@ function mousedown(event) {
 
       $(table).on('mouseenter', 'td,th', mouseenter);
       $(document).one('mouseup', mouseup);
+
+      clearTimeout(timeout);
+      if (double) {
+        $(anchor).off('mouseleave', leaveDouble);
+
+        tableOffset = $(table).offset();
+      } else {
+        double = true;
+
+        timeout = setTimeout(leaveDouble, 400);
+        $(anchor).one('mouseleave', leaveDouble);
+      }
     }
   }
 }
@@ -95,42 +126,55 @@ function mouseenter(event) {
       .css({
         cursor: 'cell',
         'user-select': 'none' })
-      .on('mouseleave', mouseleave);
+      .on('mouseleave', leaveTable);
 
     getSelection().collapseToStart();
 
     var focusOffset = $(this).offset();
 
-    if (focusOffset.top > anchorOffset.top) {
-      var bottom = this,
-        bottomTop = focusOffset.top,
-        topTop = anchorOffset.top;
+    if (double && this.cellIndex !== anchor.cellIndex) {
+      $cellection.css({
+        height: $(table).outerHeight() - 2.5,
+        top: tableOffset.top - 2.5 });
     } else {
-      var bottom = anchor,
-        bottomTop = anchorOffset.top,
-        topTop = focusOffset.top;
+      if (focusOffset.top > anchorOffset.top) {
+        var bottom = this,
+          bottomTop = focusOffset.top,
+          topTop = anchorOffset.top;
+      } else {
+        var bottom = anchor,
+          bottomTop = anchorOffset.top,
+          topTop = focusOffset.top;
+      }
+
+      $cellection.css({
+        height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
+        top: topTop - 2.5 });
     }
 
-    if (focusOffset.left > anchorOffset.left) {
-      var leftLeft = anchorOffset.left,
-        right = this,
-        rightLeft = focusOffset.left;
+    if (double && this.parentNode.rowIndex !== anchor.parentNode.rowIndex) {
+      $cellection.css({
+        left: tableOffset.left - 2.5,
+        width: $(table).outerWidth() - 2.5 });
     } else {
-      var leftLeft = focusOffset.left,
-        right = anchor,
-        rightLeft = anchorOffset.left;
+      if (focusOffset.left > anchorOffset.left) {
+        var leftLeft = anchorOffset.left,
+          right = this,
+          rightLeft = focusOffset.left;
+      } else {
+        var leftLeft = focusOffset.left,
+          right = anchor,
+          rightLeft = anchorOffset.left;
+      }
+
+      $cellection.css({
+        left: leftLeft - 2.5,
+        width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
     }
 
-    $cellection.css({
-      display: '',
-      height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
-      left: leftLeft - 2.5,
-      top: topTop - 2.5,
-      width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
+    $cellection.css('display', '');
   }
 }
-
-function mouseleave() { $cellection.css('display', 'none') }
 
 function mouseup(event) {
   $(table)
@@ -139,7 +183,7 @@ function mouseup(event) {
       'user-select': '' })
     .off({
       mouseenter: mouseenter,
-      mouseleave: mouseleave });
+      mouseleave: leaveTable });
 
   if (table.contains(event.target) && !anchor.contains(event.target)) {
     var focus = event.target;
@@ -148,32 +192,42 @@ function mouseup(event) {
     }
 
     if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
-      if (focus.parentNode.rowIndex > anchor.parentNode.rowIndex) {
-        var begin = anchor.parentNode.rowIndex,
-          end = focus.parentNode.rowIndex;
+      function callback(row) {
+        function callback(cell) { return cell.textContent }
+
+        if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) {
+          var cells = Array.prototype.map.call(row.cells, callback);
+        } else {
+          if (focus.cellIndex > anchor.cellIndex) {
+            var begin = anchor.cellIndex,
+              end = focus.cellIndex;
+          } else {
+            var begin = focus.cellIndex,
+              end = anchor.cellIndex;
+          }
+
+          var cells = Array.prototype.slice.call(row.cells, begin, end + 1).map(callback);
+        }
+
+        return cells.join('\t');
+      }
+
+      if (double && focus.cellIndex !== anchor.cellIndex) {
+        var rows = Array.prototype.map.call(table.rows, callback);
       } else {
-        var begin = focus.parentNode.rowIndex,
-          end = anchor.parentNode.rowIndex;
+        if (focus.parentNode.rowIndex > anchor.parentNode.rowIndex) {
+          var begin = anchor.parentNode.rowIndex,
+            end = focus.parentNode.rowIndex;
+        } else {
+          var begin = focus.parentNode.rowIndex,
+            end = anchor.parentNode.rowIndex;
+        }
+
+        var rows = Array.prototype.slice.call(table.rows, begin, end + 1).map(callback);
       }
 
       $textarea
-        .val(Array.prototype.slice.call(table.rows, begin, end + 1)
-          .map(function (row) {
-              if (focus.cellIndex > anchor.cellIndex) {
-                var begin = anchor.cellIndex,
-                  end = focus.cellIndex;
-              } else {
-                var begin = focus.cellIndex,
-                  end = anchor.cellIndex;
-              }
-
-              return Array.prototype.slice.call(row.cells, begin, end + 1)
-                .map(function (cell) {
-                    return cell.textContent;
-                  })
-                .join('\t');
-            })
-          .join('\n'))
+        .val(rows.join('\n'))
         .select();
     }
   }

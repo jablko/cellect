@@ -11,6 +11,7 @@ test('East', function () {
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
@@ -47,6 +48,7 @@ test('South', function () {
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[1].cells[0]).mouseenter();
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
@@ -83,6 +85,7 @@ test('West', function () {
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
+    $($table[0].rows[1].cells[1]).mouseleave();
     $($table[0].rows[1].cells[0]).mouseenter();
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
@@ -119,6 +122,7 @@ test('North', function () {
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
+    $($table[0].rows[1].cells[1]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
@@ -149,6 +153,7 @@ test('Mousedown', function () {
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
     $($table[0].rows[0].cells[1]).mouseup();
     $(document.body).mousedown();
@@ -178,6 +183,7 @@ test('Leave then return to cell', function () {
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
     $($table[0].rows[0].cells[0]).mouseenter();
 
@@ -201,6 +207,7 @@ test('Leave table', function () {
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
     $table.mouseleave();
 
@@ -221,6 +228,7 @@ test('Leave then return to table', function () {
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
     $table.mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
@@ -283,6 +291,7 @@ test('Shift click', function () {
 
     $($table[0].rows[0].cells[0]).mousedown();
     $($table[0].rows[0].cells[0]).mouseup();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
@@ -313,6 +322,7 @@ test('Drag then shift click', function () {
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[1].cells[0]).mouseenter();
     $($table[0].rows[1].cells[0]).mouseup();
     $($table[0].rows[0].cells[1]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
@@ -346,7 +356,9 @@ test('Shift drag', function () {
 
     $($table[0].rows[0].cells[0]).mousedown();
     $($table[0].rows[0].cells[0]).mouseup();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[1].cells[0]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    $($table[0].rows[1].cells[0]).mouseleave();
     $($table[0].rows[0].cells[1]).mouseenter();
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
@@ -377,6 +389,7 @@ test('Drag then shift click return to cell', function () {
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
     $($table[0].rows[1].cells[0]).mouseenter();
     $($table[0].rows[1].cells[0]).mouseup();
     $($table[0].rows[0].cells[0]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
