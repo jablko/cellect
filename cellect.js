@@ -4,7 +4,8 @@
 var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px double; display: none; pointer-events: none; position: absolute">').appendTo(document.body),
   $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
   anchor, anchorOffset, table,
-  single = false, double = false, timeout, tableOffset;
+  single = false, double = false, timeout, tableOffset,
+  colWise = false, rowWise = false;
 
 function cancelDouble() { single = false }
 
@@ -60,6 +61,8 @@ function mousedown(event) {
 
         $(anchor).one('mouseleave', cancelDouble);
       }
+
+      colWise = rowWise = false;
     }
   }
 }
@@ -97,8 +100,10 @@ function mouseup(event) {
       function callback(row) {
         function callback(cell) { return cell.textContent }
 
-        if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) {
+        if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex && !colWise) {
           var cells = Array.prototype.map.call(row.cells, callback);
+
+          rowWise = true;
         } else {
           if (focus.cellIndex > anchor.cellIndex) {
             var begin = anchor.cellIndex,
@@ -114,8 +119,10 @@ function mouseup(event) {
         return cells.join('\t');
       }
 
-      if (double && focus.cellIndex !== anchor.cellIndex) {
+      if (double && focus.cellIndex !== anchor.cellIndex && !rowWise) {
         var rows = Array.prototype.map.call(table.rows, callback);
+
+        colWise = true;
       } else {
         if (focus.parentNode.rowIndex > anchor.parentNode.rowIndex) {
           var begin = anchor.parentNode.rowIndex,
@@ -146,7 +153,7 @@ function redraw(focus) {
 
   var focusOffset = $(focus).offset();
 
-  if (double && focus.cellIndex !== anchor.cellIndex) {
+  if (double && focus.cellIndex !== anchor.cellIndex && !rowWise) {
     $cellection.css({
       height: $(table).outerHeight() - 2.5,
       top: tableOffset.top - 2.5 });
@@ -166,7 +173,7 @@ function redraw(focus) {
       top: topTop - 2.5 });
   }
 
-  if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) {
+  if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex && !colWise) {
     $cellection.css({
       left: tableOffset.left - 2.5,
       width: $(table).outerWidth() - 2.5 });
