@@ -32,7 +32,7 @@ test('East', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'e\tf');
+    equal($('textarea').val(), 'e\tf');
   });
 
 test('South', function () {
@@ -69,7 +69,7 @@ test('South', function () {
     equal($cellection.height(), 114, 'height');
     equal($cellection.width(), 146, 'width');
 
-    //equal(getSelection(), 'e\nh');
+    equal($('textarea').val(), 'e\nh');
   });
 
 test('West', function () {
@@ -106,7 +106,7 @@ test('West', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 195, 'width');
 
-    //equal(getSelection(), 'd\te');
+    equal($('textarea').val(), 'd\te');
   });
 
 test('North', function () {
@@ -143,7 +143,7 @@ test('North', function () {
     equal($cellection.height(), 148, 'height');
     equal($cellection.width(), 146, 'width');
 
-    //equal(getSelection(), 'b\ne');
+    equal($('textarea').val(), 'b\ne');
   });
 
 test('Mousedown', function () {
@@ -254,7 +254,7 @@ test('Leave then return to table', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'e\tf');
+    equal($('textarea').val(), 'e\tf');
   });
 
 test('Enter table', function () {
@@ -315,7 +315,7 @@ test('Shift click', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'e\tf');
+    equal($('textarea').val(), 'e\tf');
   });
 
 test('Drag then shift click', function () {
@@ -349,7 +349,7 @@ test('Drag then shift click', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'e\tf');
+    equal($('textarea').val(), 'e\tf');
   });
 
 test('Shift drag', function () {
@@ -383,7 +383,7 @@ test('Shift drag', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'e\tf');
+    equal($('textarea').val(), 'e\tf');
   });
 
 test('Drag then shift click return to cell', function () {
@@ -447,7 +447,7 @@ test('Columns', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'c\td\ne\tf\nh\ti');
+    equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
   });
 
 test('Rows', function () {
@@ -486,7 +486,7 @@ test('Rows', function () {
     equal($cellection.height(), 114, 'height');
     equal($cellection.width(), 300, 'width');
 
-    //equal(getSelection(), 'd\te\tf\ng\th\ti');
+    equal($('textarea').val(), 'd\te\tf\ng\th\ti');
   });
 
 test('Whole table', function () {
@@ -525,7 +525,7 @@ test('Whole table', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 300, 'width');
 
-    //equal(getSelection(), 'a\tb\tc\nd\te\tf\ng\th\ti');
+    equal($('textarea').val(), 'a\tb\tc\nd\te\tf\ng\th\ti');
   });
 
 test('Double click then single click', function () {
@@ -562,7 +562,7 @@ test('Double click then single click', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'e\tf');
+    equal($('textarea').val(), 'e\tf');
   });
 
 test('Double click then shift click', function () {
@@ -596,7 +596,7 @@ test('Double click then shift click', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 251, 'width');
 
-    //equal(getSelection(), 'c\td\ne\tf\nh\ti');
+    equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
   });
 
 test('Shift click column-wise', function () {
@@ -632,7 +632,7 @@ test('Shift click column-wise', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 195, 'width');
 
-    //equal(getSelection(), 'a\tb\nd\te\ng\th');
+    equal($('textarea').val(), 'a\tb\nd\te\ng\th');
   });
 
 test('Shift click row-wise', function () {
@@ -658,7 +658,7 @@ test('Shift click row-wise', function () {
     equal($cellection.height(), 148, 'height');
     equal($cellection.width(), 300, 'width');
 
-    $($table[0].rows[2].cells[1]).mouseup();
+    $($table[0].rows[0].cells[0]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     equal($table.css('user-select'), 'auto', 'user-select eq auto');
@@ -668,7 +668,7 @@ test('Shift click row-wise', function () {
     equal($cellection.height(), 148, 'height');
     equal($cellection.width(), 300, 'width');
 
-    //equal(getSelection(), 'a\tb\tc\nd\te\tf');
+    equal($('textarea').val(), 'a\tb\tc\nd\te\tf');
   });
 
 test('Shift click same column', function () {
@@ -694,7 +694,7 @@ test('Shift click same column', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 146, 'width');
 
-    $($table[0].rows[0].cells[0]).mouseup();
+    $($table[0].rows[0].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     equal($table.css('user-select'), 'auto', 'user-select eq auto');
@@ -704,7 +704,7 @@ test('Shift click same column', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 146, 'width');
 
-    //equal(getSelection(), 'b\ne\nh');
+    equal($('textarea').val(), 'b\ne\nh');
   });
 
 test('Shift click same row', function () {
@@ -730,7 +730,7 @@ test('Shift click same row', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 300, 'width');
 
-    $($table[0].rows[2].cells[1]).mouseup();
+    $($table[0].rows[1].cells[0]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     equal($table.css('user-select'), 'auto', 'user-select eq auto');
@@ -740,5 +740,5 @@ test('Shift click same row', function () {
     equal($cellection.height(), 67, 'height');
     equal($cellection.width(), 300, 'width');
 
-    //equal(getSelection(), 'd\te\tf');
+    equal($('textarea').val(), 'd\te\tf');
   });
