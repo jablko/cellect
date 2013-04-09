@@ -100,7 +100,7 @@ function mouseup(event) {
       function callback(row) {
         function callback(cell) { return cell.textContent }
 
-        if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex && !colWise) {
+        if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
           var cells = Array.prototype.map.call(row.cells, callback);
 
           rowWise = true;
@@ -119,7 +119,7 @@ function mouseup(event) {
         return cells.join('\t');
       }
 
-      if (double && focus.cellIndex !== anchor.cellIndex && !rowWise) {
+      if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
         var rows = Array.prototype.map.call(table.rows, callback);
 
         colWise = true;
@@ -153,7 +153,7 @@ function redraw(focus) {
 
   var focusOffset = $(focus).offset();
 
-  if (double && focus.cellIndex !== anchor.cellIndex && !rowWise) {
+  if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     $cellection.css({
       height: $(table).outerHeight() - 2.5,
       top: tableOffset.top - 2.5 });
@@ -173,7 +173,7 @@ function redraw(focus) {
       top: topTop - 2.5 });
   }
 
-  if (double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex && !colWise) {
+  if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
     $cellection.css({
       left: tableOffset.left - 2.5,
       width: $(table).outerWidth() - 2.5 });
