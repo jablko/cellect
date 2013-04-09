@@ -3,7 +3,7 @@
 // http://stackoverflow.com/questions/3680429/click-through-a-div-to-underlying-elements
 var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px double; display: none; pointer-events: none; position: absolute">').appendTo(document.body),
   $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
-  anchor, offset, table;
+  anchor, anchorOffset, table;
 
 function mousedown(event) {
   if (event.shiftKey) {
@@ -25,10 +25,32 @@ function mousedown(event) {
 
           var focusOffset = $(focus).offset();
 
+          if (focusOffset.top > anchorOffset.top) {
+            var bottom = focus,
+              bottomTop = focusOffset.top,
+              topTop = anchorOffset.top;
+          } else {
+            var bottom = anchor,
+              bottomTop = anchorOffset.top,
+              topTop = focusOffset.top;
+          }
+
+          if (focusOffset.left > anchorOffset.left) {
+            var leftLeft = anchorOffset.left,
+              right = focus,
+              rightLeft = focusOffset.left;
+          } else {
+            var leftLeft = focusOffset.left,
+              right = anchor,
+              rightLeft = anchorOffset.left;
+          }
+
           $cellection.css({
             display: '',
-            height: focusOffset.top - offset.top + $(focus).outerHeight() - 2.5,
-            width: focusOffset.left - offset.left + $(focus).outerWidth() - 2.5 });
+            height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
+            left: leftLeft - 2.5,
+            top: topTop - 2.5,
+            width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
         } else {
           $cellection.css('display', 'none');
         }
@@ -40,18 +62,15 @@ function mousedown(event) {
       $(document).one('mouseup', mouseup);
     }
   } else {
+    $cellection.css('display', 'none');
+
     anchor = event.target;
     while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
       anchor = anchor.parentNode;
     }
 
     if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      offset = $(anchor).offset();
-
-      $cellection.css({
-        display: 'none',
-        left: offset.left - 2.5,
-        top: offset.top - 2.5 });
+      anchorOffset = $(anchor).offset();
 
       table = anchor.parentNode;
       while (table.nodeName.toLowerCase() !== 'table') {
@@ -60,8 +79,6 @@ function mousedown(event) {
 
       $(table).on('mouseenter', 'td,th', mouseenter);
       $(document).one('mouseup', mouseup);
-    } else {
-      $cellection.css('display', 'none');
     }
   }
 }
@@ -84,10 +101,32 @@ function mouseenter(event) {
 
     var focusOffset = $(this).offset();
 
+    if (focusOffset.top > anchorOffset.top) {
+      var bottom = this,
+        bottomTop = focusOffset.top,
+        topTop = anchorOffset.top;
+    } else {
+      var bottom = anchor,
+        bottomTop = anchorOffset.top,
+        topTop = focusOffset.top;
+    }
+
+    if (focusOffset.left > anchorOffset.left) {
+      var leftLeft = anchorOffset.left,
+        right = this,
+        rightLeft = focusOffset.left;
+    } else {
+      var leftLeft = focusOffset.left,
+        right = anchor,
+        rightLeft = anchorOffset.left;
+    }
+
     $cellection.css({
       display: '',
-      height: focusOffset.top - offset.top + $(this).outerHeight() - 2.5,
-      width: focusOffset.left - offset.left + $(this).outerWidth() - 2.5 });
+      height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
+      left: leftLeft - 2.5,
+      top: topTop - 2.5,
+      width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
   }
 }
 
@@ -109,10 +148,26 @@ function mouseup(event) {
     }
 
     if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
+      if (focus.parentNode.rowIndex > anchor.parentNode.rowIndex) {
+        var begin = anchor.parentNode.rowIndex,
+          end = focus.parentNode.rowIndex;
+      } else {
+        var begin = focus.parentNode.rowIndex,
+          end = anchor.parentNode.rowIndex;
+      }
+
       $textarea
-        .val(Array.prototype.slice.call(table.rows, anchor.parentNode.rowIndex, focus.parentNode.rowIndex + 1)
+        .val(Array.prototype.slice.call(table.rows, begin, end + 1)
           .map(function (row) {
-              return Array.prototype.slice.call(row.cells, anchor.cellIndex, focus.cellIndex + 1)
+              if (focus.cellIndex > anchor.cellIndex) {
+                var begin = anchor.cellIndex,
+                  end = focus.cellIndex;
+              } else {
+                var begin = focus.cellIndex,
+                  end = anchor.cellIndex;
+              }
+
+              return Array.prototype.slice.call(row.cells, begin, end + 1)
                 .map(function (cell) {
                     return cell.textContent;
                   })

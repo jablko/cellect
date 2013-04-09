@@ -229,7 +229,7 @@ test('Leave then return to table', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    //deepEqual($cellection.offset(), { left: 133.5, top: 29.5 }, 'offset');
+    deepEqual($cellection.offset(), { left: 133.5, top: 29.5 }, 'offset');
     equal($cellection.height(), 79, 'height');
     equal($cellection.width(), 195, 'width');
 
@@ -239,7 +239,7 @@ test('Leave then return to table', function () {
     equal($table.css('user-select'), 'auto', 'user-select eq auto');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    //deepEqual($cellection.offset(), { left: 133.5, top: 29.5 }, 'offset');
+    deepEqual($cellection.offset(), { left: 133.5, top: 29.5 }, 'offset');
     equal($cellection.height(), 79, 'height');
     equal($cellection.width(), 195, 'width');
 
