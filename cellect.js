@@ -4,10 +4,9 @@
 var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px double; display: none; pointer-events: none; position: absolute">').appendTo(document.body),
   $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
   anchor, anchorOffset, table,
-  double = false, timeout, tableOffset;
+  single = false, double = false, timeout, tableOffset;
 
-function leaveDouble() { double = false }
-function leaveTable() { $cellection.css('display', 'none') }
+function cancelDouble() { single = false }
 
 function mousedown(event) {
   if (event.shiftKey) {
@@ -23,7 +22,7 @@ function mousedown(event) {
             .css({
               cursor: 'cell',
               'user-select': 'none' })
-            .on('mouseleave', leaveTable);
+            .on('mouseleave', mouseleave);
 
           getSelection().collapseToStart();
 
@@ -100,15 +99,16 @@ function mousedown(event) {
       $(document).one('mouseup', mouseup);
 
       clearTimeout(timeout);
-      if (double) {
-        $(anchor).off('mouseleave', leaveDouble);
+      timeout = setTimeout(cancelDouble, 400);
 
+      if (single) {
+        double = true;
         tableOffset = $(table).offset();
       } else {
-        double = true;
+        single = true;
+        double = false;
 
-        timeout = setTimeout(leaveDouble, 400);
-        $(anchor).one('mouseleave', leaveDouble);
+        $(anchor).one('mouseleave', cancelDouble);
       }
     }
   }
@@ -126,7 +126,7 @@ function mouseenter(event) {
       .css({
         cursor: 'cell',
         'user-select': 'none' })
-      .on('mouseleave', leaveTable);
+      .on('mouseleave', mouseleave);
 
     getSelection().collapseToStart();
 
@@ -176,6 +176,8 @@ function mouseenter(event) {
   }
 }
 
+function mouseleave() { $cellection.css('display', 'none') }
+
 function mouseup(event) {
   $(table)
     .css({
@@ -183,7 +185,7 @@ function mouseup(event) {
       'user-select': '' })
     .off({
       mouseenter: mouseenter,
-      mouseleave: leaveTable });
+      mouseleave: mouseleave });
 
   if (table.contains(event.target) && !anchor.contains(event.target)) {
     var focus = event.target;

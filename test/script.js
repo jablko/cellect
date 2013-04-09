@@ -174,6 +174,9 @@ test('Stay in cell', function () {
     equal($table.css('user-select'), 'auto', 'user-select eq auto');
 
     equal($cellection.css('display'), 'none', 'display eq none');
+
+    // Avoid double
+    $($table[0].rows[1].cells[1]).mouseleave();
   });
 
 test('Leave then return to cell', function () {
@@ -522,4 +525,77 @@ test('Whole table', function () {
     equal($cellection.width(), 300, 'width');
 
     //equal(getSelection(), 'a\tb\tc\nd\te\tf\ng\th\ti');
+  });
+
+test('Double click then single click', function () {
+    var $table = $('#fixture table'),
+      $cellection = $('div:eq(-1)');
+
+    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
+
+    $($table[0].rows[1].cells[1]).mousedown();
+    $($table[0].rows[1].cells[1]).mouseup();
+    $($table[0].rows[1].cells[1]).mousedown();
+    $($table[0].rows[1].cells[1]).mouseup();
+
+    $($table[0].rows[1].cells[1]).mouseleave();
+
+    $($table[0].rows[1].cells[1]).mousedown();
+    $($table[0].rows[1].cells[1]).mouseleave();
+    $($table[0].rows[1].cells[2]).mouseenter();
+
+    equal($table.css('cursor'), 'cell', 'cursor eq cell');
+    equal($table.css('user-select'), 'none', 'user-select eq none');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 182.5, top: 110.5 }, 'offset');
+    equal($cellection.height(), 67, 'height');
+    equal($cellection.width(), 251, 'width');
+
+    $($table[0].rows[1].cells[2]).mouseup();
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 182.5, top: 110.5 }, 'offset');
+    equal($cellection.height(), 67, 'height');
+    equal($cellection.width(), 251, 'width');
+
+    //equal(getSelection(), 'e\tf');
+  });
+
+test('Double click then shift click', function () {
+    var $table = $('#fixture table'),
+      $cellection = $('div:eq(-1)');
+
+    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
+
+    $($table[0].rows[1].cells[1]).mousedown();
+    $($table[0].rows[1].cells[1]).mouseup();
+    $($table[0].rows[1].cells[1]).mousedown();
+    $($table[0].rows[1].cells[1]).mouseup();
+
+    $($table[0].rows[1].cells[1]).mouseleave();
+    $($table[0].rows[1].cells[2]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+
+    equal($table.css('cursor'), 'cell', 'cursor eq cell');
+    equal($table.css('user-select'), 'none', 'user-select eq none');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 182.5, top: 29.5 }, 'offset');
+    equal($cellection.height(), 195, 'height');
+    equal($cellection.width(), 251, 'width');
+
+    $($table[0].rows[1].cells[2]).mouseup();
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 182.5, top: 29.5 }, 'offset');
+    equal($cellection.height(), 195, 'height');
+    equal($cellection.width(), 251, 'width');
+
+    //equal(getSelection(), 'c\td\ne\tf\nh\ti');
   });
