@@ -14,10 +14,18 @@
   width: 148px;
 }
 
+#fixture td + td + td {
+  width: 105px;
+}
+
 #fixture tr {
   height: 81px;
 }
 
 #fixture tr + tr {
   height: 69px;
+}
+
+#fixture tr + tr + tr {
+  height: 47px;
 }
