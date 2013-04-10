@@ -787,3 +787,34 @@ test('Collapse whitespace', function () {
 
     $table.remove();
   });
+
+test('Border collapse', function () {
+    var $table = $('<table style="border-collapse: collapse"><tr><td>a</td><td>b</td></tr></table>').appendTo('#fixture'),
+      $cellection = $('div:eq(-1)');
+
+    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
+
+    $($table[0].rows[0].cells[0]).mousedown();
+    $($table[0].rows[0].cells[0]).mouseleave();
+    $($table[0].rows[0].cells[1]).mouseenter();
+
+    equal($table.css('cursor'), 'cell', 'cursor eq cell');
+    equal($table.css('user-select'), 'none', 'user-select eq none');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 135, top: 31 }, 'offset');
+    equal($cellection.height(), 78, 'height');
+    equal($cellection.width(), 196, 'width');
+
+    $($table[0].rows[0].cells[1]).mouseup();
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 135, top: 31 }, 'offset');
+    equal($cellection.height(), 78, 'height');
+    equal($cellection.width(), 196, 'width');
+
+    $table.remove();
+  });

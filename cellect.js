@@ -7,6 +7,9 @@ var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px
   single = false, double = false, timeout, tableOffset,
   colWise = false, rowWise = false;
 
+// Firefox collapseFix eq 0, Chrome collapseFix eq 1
+var collapseFix = 2 - $('<td style="border: 1px solid">').appendTo($('<tr>').appendTo($('<table style="border-collapse: collapse; visibility: hidden">').appendTo('body'))).innerHeight();
+
 function cancelDouble() { single = false }
 
 function mousedown(event) {
@@ -163,9 +166,8 @@ function redraw(focus) {
   var focusOffset = $(focus).offset();
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
-    $cellection.css({
-      height: $(table).innerHeight() - 2,
-      top: tableOffset.top + parseInt($(table).css('border-top-width')) - 2 });
+    var height = $(table).innerHeight() - 2,
+      top = tableOffset.top + parseInt($(table).css('border-top-width')) - 2;
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
@@ -179,15 +181,13 @@ function redraw(focus) {
         topTop = focusOffset.top;
     }
 
-    $cellection.css({
-      height: bottomTop - topTop + $(bottom).innerHeight() - 2,
-      top: topTop + parseInt($(top).css('border-top-width')) - 2 });
+    var height = bottomTop - topTop + $(bottom).innerHeight() - 2,
+      top = topTop + parseInt($(top).css('border-top-width')) - 2;
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
-    $cellection.css({
-      left: tableOffset.left + parseInt($(table).css('border-left-width')) - 2,
-      width: $(table).innerWidth() - 2 });
+    var left = tableOffset.left + parseInt($(table).css('border-left-width')) - 2,
+      width = $(table).innerWidth() - 2;
   } else {
     if (focusOffset.left > anchorOffset.left) {
       var left = anchor,
@@ -201,12 +201,21 @@ function redraw(focus) {
         rightLeft = anchorOffset.left;
     }
 
-    $cellection.css({
-      left: leftLeft + parseInt($(left).css('border-left-width')) - 2,
-      width: rightLeft - leftLeft + $(right).innerWidth() - 2 });
+    var left = leftLeft + parseInt($(left).css('border-left-width')) - 2,
+      width = rightLeft - leftLeft + $(right).innerWidth() - 2;
   }
 
-  $cellection.css('display', '');
+  if (collapseFix && $(table).css('border-collapse') === 'collapse') {
+    height += 1;
+    width += 1;
+  }
+
+  $cellection.css({
+    display: '',
+    height: height,
+    left: left,
+    top: top,
+    width: width });
 }
 
 $(document.body).on('mousedown', mousedown);
