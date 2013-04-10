@@ -7,7 +7,7 @@ test('East', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -25,7 +25,7 @@ test('East', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -44,7 +44,7 @@ test('South', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -62,7 +62,7 @@ test('South', function () {
     $($table[0].rows[2].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -81,7 +81,7 @@ test('West', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -99,7 +99,7 @@ test('West', function () {
     $($table[0].rows[1].cells[0]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
@@ -118,7 +118,7 @@ test('North', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -136,7 +136,7 @@ test('North', function () {
     $($table[0].rows[0].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
@@ -171,7 +171,7 @@ test('Stay in cell', function () {
     $($table[0].rows[1].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -191,14 +191,14 @@ test('Leave then return to cell', function () {
     $($table[0].rows[1].cells[1]).mouseenter();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
     $($table[0].rows[1].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
   });
@@ -219,7 +219,7 @@ test('Leave table', function () {
     $(document).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
   });
@@ -247,7 +247,7 @@ test('Leave then return to table', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -267,21 +267,21 @@ test('Enter table', function () {
     $($table[0].rows[1].cells[1]).mouseenter();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
     $($table[0].rows[1].cells[2]).mouseenter();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
   });
@@ -308,7 +308,7 @@ test('Shift click', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -342,7 +342,7 @@ test('Drag then shift click', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -376,7 +376,7 @@ test('Shift drag', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -399,14 +399,14 @@ test('Drag then shift click return to cell', function () {
     $($table[0].rows[1].cells[1]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
     $($table[0].rows[1].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
   });
@@ -422,7 +422,7 @@ test('Columns', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -440,7 +440,7 @@ test('Columns', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
@@ -461,7 +461,7 @@ test('Rows', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -479,7 +479,7 @@ test('Rows', function () {
     $($table[0].rows[2].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
@@ -500,7 +500,7 @@ test('Whole table', function () {
     $($table[0].rows[1].cells[1]).mousedown();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
@@ -518,7 +518,7 @@ test('Whole table', function () {
     $($table[0].rows[2].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
@@ -555,7 +555,7 @@ test('Double click then single click', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
@@ -589,7 +589,7 @@ test('Double click then shift click', function () {
     $($table[0].rows[1].cells[2]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
@@ -625,7 +625,7 @@ test('Shift click column-wise', function () {
     $($table[0].rows[0].cells[0]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
@@ -661,7 +661,7 @@ test('Shift click row-wise', function () {
     $($table[0].rows[0].cells[0]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
@@ -697,7 +697,7 @@ test('Shift click same column', function () {
     $($table[0].rows[0].cells[1]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
@@ -733,7 +733,7 @@ test('Shift click same row', function () {
     $($table[0].rows[1].cells[0]).mouseup();
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
-    equal($table.css('user-select'), 'auto', 'user-select eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
