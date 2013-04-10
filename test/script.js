@@ -758,21 +758,6 @@ test('Quote', function () {
     $table.remove();
   });
 
-test('Newline', function () {
-    var $table = $('<table><tr><td>a</td><td>b\nc</td></tr></table>').appendTo('#fixture');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
-    $($table[0].rows[0].cells[0]).mousedown();
-    $($table[0].rows[0].cells[0]).mouseleave();
-    $($table[0].rows[0].cells[1]).mouseenter();
-    $($table[0].rows[0].cells[1]).mouseup();
-
-    equal($('textarea').val(), 'a\t"b\nc"');
-
-    $table.remove();
-  });
-
 test('Trim whitespace', function () {
     var $table = $('<table><tr><td>a</td><td> b\n</td></tr></table>').appendTo('#fixture');
 
@@ -798,7 +783,7 @@ test('Collapse whitespace', function () {
     $($table[0].rows[0].cells[1]).mouseenter();
     $($table[0].rows[0].cells[1]).mouseup();
 
-    equal($('textarea').val(), 'a\t"b\nc"');
+    equal($('textarea').val(), 'a\tb c');
 
     $table.remove();
   });
