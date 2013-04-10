@@ -1,3 +1,5 @@
+(function () {
+
 // http://stackoverflow.com/questions/5598743/finding-elements-position-relative-to-the-document
 
 // http://stackoverflow.com/questions/3680429/click-through-a-div-to-underlying-elements
@@ -219,3 +221,5 @@ function redraw(focus) {
 }
 
 $(document.body).on('mousedown', mousedown);
+
+  })();
