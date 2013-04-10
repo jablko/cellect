@@ -6,6 +6,7 @@
 }
 
 #fixture td {
+  border: 1px solid;
   padding: 0;
   width: 49px;
 }

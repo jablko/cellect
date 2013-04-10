@@ -18,9 +18,9 @@ test('East', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -28,9 +28,9 @@ test('East', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
   });
@@ -55,8 +55,8 @@ test('South', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 114, 'height');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 112, 'height');
     equal($cellection.width(), 146, 'width');
 
     $($table[0].rows[2].cells[1]).mouseup();
@@ -65,8 +65,8 @@ test('South', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 114, 'height');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 112, 'height');
     equal($cellection.width(), 146, 'width');
 
     equal($('textarea').val(), 'e\nh');
@@ -92,9 +92,9 @@ test('West', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 195, 'width');
+    deepEqual($cellection.offset(), { left: 135, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 197, 'width');
 
     $($table[0].rows[1].cells[0]).mouseup();
 
@@ -102,9 +102,9 @@ test('West', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 195, 'width');
+    deepEqual($cellection.offset(), { left: 135, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 197, 'width');
 
     equal($('textarea').val(), 'd\te');
   });
@@ -129,8 +129,8 @@ test('North', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
-    equal($cellection.height(), 148, 'height');
+    deepEqual($cellection.offset(), { left: 186, top: 31 }, 'offset');
+    equal($cellection.height(), 146, 'height');
     equal($cellection.width(), 146, 'width');
 
     $($table[0].rows[0].cells[1]).mouseup();
@@ -139,8 +139,8 @@ test('North', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
-    equal($cellection.height(), 148, 'height');
+    deepEqual($cellection.offset(), { left: 186, top: 31 }, 'offset');
+    equal($cellection.height(), 146, 'height');
     equal($cellection.width(), 146, 'width');
 
     equal($('textarea').val(), 'b\ne');
@@ -240,9 +240,9 @@ test('Leave then return to table', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -250,9 +250,9 @@ test('Leave then return to table', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
   });
@@ -301,9 +301,9 @@ test('Shift click', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -311,9 +311,9 @@ test('Shift click', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
   });
@@ -335,9 +335,9 @@ test('Drag then shift click', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -345,9 +345,9 @@ test('Drag then shift click', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
   });
@@ -369,9 +369,9 @@ test('Shift drag', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -379,9 +379,9 @@ test('Shift drag', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
   });
@@ -433,9 +433,9 @@ test('Columns', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 186, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 251, 'width');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -443,9 +443,9 @@ test('Columns', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 186, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 251, 'width');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
   });
@@ -472,9 +472,9 @@ test('Rows', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
-    equal($cellection.height(), 114, 'height');
-    equal($cellection.width(), 300, 'width');
+    deepEqual($cellection.offset(), { left: 134, top: 112 }, 'offset');
+    equal($cellection.height(), 112, 'height');
+    equal($cellection.width(), 306, 'width');
 
     $($table[0].rows[2].cells[1]).mouseup();
 
@@ -482,9 +482,9 @@ test('Rows', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
-    equal($cellection.height(), 114, 'height');
-    equal($cellection.width(), 300, 'width');
+    deepEqual($cellection.offset(), { left: 134, top: 112 }, 'offset');
+    equal($cellection.height(), 112, 'height');
+    equal($cellection.width(), 306, 'width');
 
     equal($('textarea').val(), 'd\te\tf\ng\th\ti');
   });
@@ -513,7 +513,7 @@ test('Whole table', function () {
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 300, 'width');
+    equal($cellection.width(), 306, 'width');
 
     $($table[0].rows[2].cells[2]).mouseup();
 
@@ -523,7 +523,7 @@ test('Whole table', function () {
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 300, 'width');
+    equal($cellection.width(), 306, 'width');
 
     equal($('textarea').val(), 'a\tb\tc\nd\te\tf\ng\th\ti');
   });
@@ -548,9 +548,9 @@ test('Double click then single click', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -558,9 +558,9 @@ test('Double click then single click', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 251, 'width');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
   });
@@ -582,9 +582,9 @@ test('Double click then shift click', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 186, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 251, 'width');
+    equal($cellection.width(), 253, 'width');
 
     $($table[0].rows[1].cells[2]).mouseup();
 
@@ -592,9 +592,9 @@ test('Double click then shift click', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 186, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 251, 'width');
+    equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
   });
@@ -618,9 +618,9 @@ test('Shift click column-wise', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 135, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 195, 'width');
+    equal($cellection.width(), 197, 'width');
 
     $($table[0].rows[0].cells[0]).mouseup();
 
@@ -628,9 +628,9 @@ test('Shift click column-wise', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 135, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
-    equal($cellection.width(), 195, 'width');
+    equal($cellection.width(), 197, 'width');
 
     equal($('textarea').val(), 'a\tb\nd\te\ng\th');
   });
@@ -654,9 +654,9 @@ test('Shift click row-wise', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
-    equal($cellection.height(), 148, 'height');
-    equal($cellection.width(), 300, 'width');
+    deepEqual($cellection.offset(), { left: 134, top: 31 }, 'offset');
+    equal($cellection.height(), 146, 'height');
+    equal($cellection.width(), 306, 'width');
 
     $($table[0].rows[0].cells[0]).mouseup();
 
@@ -664,9 +664,9 @@ test('Shift click row-wise', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 30 }, 'offset');
-    equal($cellection.height(), 148, 'height');
-    equal($cellection.width(), 300, 'width');
+    deepEqual($cellection.offset(), { left: 134, top: 31 }, 'offset');
+    equal($cellection.height(), 146, 'height');
+    equal($cellection.width(), 306, 'width');
 
     equal($('textarea').val(), 'a\tb\tc\nd\te\tf');
   });
@@ -690,7 +690,7 @@ test('Shift click same column', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 186, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 146, 'width');
 
@@ -700,7 +700,7 @@ test('Shift click same column', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 183, top: 30 }, 'offset');
+    deepEqual($cellection.offset(), { left: 186, top: 30 }, 'offset');
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 146, 'width');
 
@@ -726,9 +726,9 @@ test('Shift click same row', function () {
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 300, 'width');
+    deepEqual($cellection.offset(), { left: 134, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 306, 'width');
 
     $($table[0].rows[1].cells[0]).mouseup();
 
@@ -736,9 +736,9 @@ test('Shift click same row', function () {
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
-    deepEqual($cellection.offset(), { left: 134, top: 111 }, 'offset');
-    equal($cellection.height(), 67, 'height');
-    equal($cellection.width(), 300, 'width');
+    deepEqual($cellection.offset(), { left: 134, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 306, 'width');
 
     equal($('textarea').val(), 'd\te\tf');
   });

@@ -165,40 +165,44 @@ function redraw(focus) {
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     $cellection.css({
       height: $(table).innerHeight() - 2,
-      top: tableOffset.top - 2 });
+      top: tableOffset.top + parseInt($(table).css('border-top-width')) - 2 });
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
         bottomTop = focusOffset.top,
+        top = anchor,
         topTop = anchorOffset.top;
     } else {
       var bottom = anchor,
         bottomTop = anchorOffset.top,
+        top = focus,
         topTop = focusOffset.top;
     }
 
     $cellection.css({
       height: bottomTop - topTop + $(bottom).innerHeight() - 2,
-      top: topTop - 2 });
+      top: topTop + parseInt($(top).css('border-top-width')) - 2 });
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
     $cellection.css({
-      left: tableOffset.left - 2,
+      left: tableOffset.left + parseInt($(table).css('border-left-width')) - 2,
       width: $(table).innerWidth() - 2 });
   } else {
     if (focusOffset.left > anchorOffset.left) {
-      var leftLeft = anchorOffset.left,
+      var left = anchor,
+        leftLeft = anchorOffset.left,
         right = focus,
         rightLeft = focusOffset.left;
     } else {
-      var leftLeft = focusOffset.left,
+      var left = focus,
+        leftLeft = focusOffset.left,
         right = anchor,
         rightLeft = anchorOffset.left;
     }
 
     $cellection.css({
-      left: leftLeft - 2,
+      left: leftLeft + parseInt($(left).css('border-left-width')) - 2,
       width: rightLeft - leftLeft + $(right).innerWidth() - 2 });
   }
 
