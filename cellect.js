@@ -164,8 +164,8 @@ function redraw(focus) {
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     $cellection.css({
-      height: $(table).outerHeight() - 2.5,
-      top: tableOffset.top - 2.5 });
+      height: $(table).innerHeight() - 2,
+      top: tableOffset.top - 2 });
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
@@ -178,14 +178,14 @@ function redraw(focus) {
     }
 
     $cellection.css({
-      height: bottomTop - topTop + $(bottom).outerHeight() - 2.5,
-      top: topTop - 2.5 });
+      height: bottomTop - topTop + $(bottom).innerHeight() - 2,
+      top: topTop - 2 });
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
     $cellection.css({
-      left: tableOffset.left - 2.5,
-      width: $(table).outerWidth() - 2.5 });
+      left: tableOffset.left - 2,
+      width: $(table).innerWidth() - 2 });
   } else {
     if (focusOffset.left > anchorOffset.left) {
       var leftLeft = anchorOffset.left,
@@ -198,8 +198,8 @@ function redraw(focus) {
     }
 
     $cellection.css({
-      left: leftLeft - 2.5,
-      width: rightLeft - leftLeft + $(right).outerWidth() - 2.5 });
+      left: leftLeft - 2,
+      width: rightLeft - leftLeft + $(right).innerWidth() - 2 });
   }
 
   $cellection.css('display', '');
