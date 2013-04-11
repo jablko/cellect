@@ -3,7 +3,7 @@
 // http://stackoverflow.com/questions/5598743/finding-elements-position-relative-to-the-document
 
 // http://stackoverflow.com/questions/3680429/click-through-a-div-to-underlying-elements
-var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px double; display: none; pointer-events: none; position: absolute">').appendTo(document.body),
+var $cellection = $('<div style="background: rgba(70, 130, 180, .2); border: 3px double; display: none; pointer-events: none; position: absolute; z-index: 32767">').appendTo(document.body),
   $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
   anchor, anchorOffset, table,
   single = false, double = false, timeout, tableOffset,
