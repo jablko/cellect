@@ -2,23 +2,71 @@
 // @description Select tables like cells in a spreadsheet. Double-click to select rows, columns, or a whole table.
 // @name Cellect
 // @namespace http://nottheoilrig.com
-// @require http://code.jquery.com/jquery-latest.min.js
 // @version 1.0
 // ==/UserScript==
+
+function innerHeight(elt) {
+  var style = getComputedStyle(elt);
+
+  return parseFloat(style.paddingTop) + parseFloat(style.height) + parseFloat(style.paddingBottom);
+}
+
+function innerWidth(elt) {
+  var style = getComputedStyle(elt);
+
+  return parseFloat(style.paddingLeft) + parseFloat(style.width) + parseFloat(style.paddingRight);
+}
+
+function off(target, type, listener) {
+  target.removeEventListener(type, listener, true);
+}
+
+function on(target, type, listener) {
+  target.addEventListener(type, listener, true);
+}
 
 // http://stackoverflow.com/questions/5598743/finding-elements-position-relative-to-the-document
 
 // http://stackoverflow.com/questions/3680429/click-through-a-div-to-underlying-elements
-var $cellection = $('<div style="background: rgba(135, 206, 235, .7); border: 3px double; display: none; pointer-events: none; position: absolute; z-index: 32767">').appendTo(document.body),
-  $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
-  anchor, anchorOffset, table,
+var cellection = document.createElement('div');
+cellection.style.background = 'rgba(135, 206, 235, .7)';
+cellection.style.border = '3px double';
+cellection.style.display = 'none';
+cellection.style.pointerEvents = 'none';
+cellection.style.position = 'absolute';
+cellection.style.zIndex = 32767;
+
+document.body.appendChild(cellection);
+
+var textarea = document.createElement('textarea');
+textarea.style.position = 'absolute';
+textarea.style.top = '-32767px';
+document.body.appendChild(textarea);
+
+var anchor, anchorOffset, table,
   single = false, double = false, timeout, tableOffset,
   colWise = false, rowWise = false;
 
 // Firefox collapseFix eq 0, Chrome collapseFix eq 1
-var collapseFix = 1 - $('<td style="border: 1px solid; padding: 0; width: 1px">').appendTo($('<tr>').appendTo($('<table style="border-collapse: collapse; visibility: hidden">').appendTo('body'))).width();
+var elt = document.body.appendChild(document.createElement('table'));
+elt.style.borderCollapse = 'collapse';
+elt.style.visibility = 'hidden';
 
-function cancelDouble() { single = false }
+elt = elt.appendChild(document.createElement('tr'));
+elt = elt.appendChild(document.createElement('td'));
+elt.style.border = '1px solid';
+elt.style.padding = 0;
+elt.style.width = '1px';
+
+var collapseFix = 1 - parseFloat(getComputedStyle(elt).width);
+
+function cancelDouble(evt) {
+  if (!evt.relatedTarget || !this.contains(evt.relatedTarget)) {
+    off(this, 'mouseout', cancelDouble);
+
+    single = false;
+  }
+}
 
 function mousedown(evt) {
   if (evt.shiftKey) {
@@ -32,17 +80,17 @@ function mousedown(evt) {
         if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
           redraw(focus);
         } else {
-          $cellection.css('display', 'none');
+          cellection.style.display = 'none';
         }
       } else {
-        $cellection.css('display', 'none');
+        cellection.style.display = 'none';
       }
 
-      $(table).on('mouseenter', 'td,th', mouseenter);
-      $(document).one('mouseup', mouseup);
+      on(table, 'mouseover', mouseenter);
+      on(document, 'mouseup', mouseup);
     }
   } else {
-    $cellection.css('display', 'none');
+    cellection.style.display = 'none';
 
     anchor = evt.target;
     while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
@@ -50,27 +98,27 @@ function mousedown(evt) {
     }
 
     if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      anchorOffset = $(anchor).offset();
+      anchorOffset = anchor.getBoundingClientRect();
 
       table = anchor.parentNode;
       while (table.nodeName.toLowerCase() !== 'table') {
         table = table.parentNode;
       }
 
-      $(table).on('mouseenter', 'td,th', mouseenter);
-      $(document).one('mouseup', mouseup);
+      on(table, 'mouseover', mouseenter);
+      on(document, 'mouseup', mouseup);
 
       clearTimeout(timeout);
-      timeout = setTimeout(cancelDouble, 400);
+      timeout = setTimeout(function () { single = false }, 400);
 
       if (single) {
         double = true;
-        tableOffset = $(table).offset();
+        tableOffset = table.getBoundingClientRect();
       } else {
         single = true;
         double = false;
 
-        $(anchor).one('mouseleave', cancelDouble);
+        on(anchor, 'mouseout', cancelDouble);
       }
 
       colWise = rowWise = false;
@@ -79,27 +127,43 @@ function mousedown(evt) {
 }
 
 function mouseenter(evt) {
-  if (this === anchor) {
-    $(table).css({
-      cursor: '',
-      'user-select': '' });
+  var focus = evt.target;
+  while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== this) {
+    focus = focus.parentNode;
+  }
 
-    $cellection.css('display', 'none');
-  } else {
-    redraw(this);
+  if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
+    if (!evt.relatedTarget || !focus.contains(evt.relatedTarget)) {
+      if (focus === anchor) {
+        table.style.cursor = '';
+        table.style.userSelect = '';
+        table.style.MozUserSelect = '';
+        table.style.WebkitUserSelect = '';
+
+        cellection.style.display = 'none';
+      } else {
+        redraw(focus);
+      }
+    }
   }
 }
 
-function mouseleave() { $cellection.css('display', 'none') }
+function mouseleave(evt) {
+  if (!evt.relatedTarget || !this.contains(evt.relatedTarget)) {
+    cellection.style.display = 'none';
+  }
+}
 
 function mouseup(evt) {
-  $(table)
-    .css({
-      cursor: '',
-      'user-select': '' })
-    .off({
-      mouseenter: mouseenter,
-      mouseleave: mouseleave });
+  off(this, 'mouseup', mouseup);
+
+  table.style.cursor = '';
+  table.style.userSelect = '';
+  table.style.MozUserSelect = '';
+  table.style.WebkitUserSelect = '';
+
+  off(table, 'mouseover', mouseenter);
+  off(table, 'mouseout', mouseleave);
 
   if (table.contains(evt.target) && !anchor.contains(evt.target)) {
     var focus = evt.target;
@@ -155,27 +219,27 @@ function mouseup(evt) {
         var rows = Array.prototype.slice.call(table.rows, begin, end + 1).map(callback);
       }
 
-      $textarea
-        .val(rows.join('\n'))
-        .select();
+      textarea.value = rows.join('\n');
+      textarea.select();
     }
   }
 }
 
 function redraw(focus) {
-  $(table)
-    .css({
-      cursor: 'cell',
-      'user-select': 'none' })
-    .on('mouseleave', mouseleave);
+  table.style.cursor = 'cell';
+  table.style.userSelect = 'none';
+  table.style.MozUserSelect = 'none';
+  table.style.WebkitUserSelect = 'none';
+
+  on(table, 'mouseout', mouseleave);
 
   getSelection().collapseToStart();
 
-  var focusOffset = $(focus).offset();
+  var focusOffset = focus.getBoundingClientRect();
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
-    var height = $(table).innerHeight() - 2,
-      top = tableOffset.top + parseFloat($(table).css('border-top-width')) - 2;
+    var height = innerHeight(table) - 2,
+      top = tableOffset.top + parseFloat(getComputedStyle(table, null).borderTopWidth) - 2;
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
@@ -189,13 +253,13 @@ function redraw(focus) {
         topTop = focusOffset.top;
     }
 
-    var height = bottomTop - topTop + $(bottom).innerHeight() - 2,
-      top = topTop + parseFloat($(top).css('border-top-width')) - 2;
+    var height = bottomTop - topTop + innerHeight(bottom) - 2,
+      top = topTop + parseFloat(getComputedStyle(top, null).borderTopWidth) - 2;
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
-    var left = tableOffset.left + parseFloat($(table).css('border-left-width')) - 2,
-      width = $(table).innerWidth() - 2;
+    var left = tableOffset.left + parseFloat(getComputedStyle(table, null).borderLeftWidth) - 2,
+      width = innerWidth(table) - 2;
   } else {
     if (focusOffset.left > anchorOffset.left) {
       var left = anchor,
@@ -209,21 +273,20 @@ function redraw(focus) {
         rightLeft = anchorOffset.left;
     }
 
-    var left = leftLeft + parseFloat($(left).css('border-left-width')) - 2,
-      width = rightLeft - leftLeft + $(right).innerWidth() - 2;
+    var left = leftLeft + parseFloat(getComputedStyle(left, null).borderLeftWidth) - 2,
+      width = rightLeft - leftLeft + innerWidth(right) - 2;
   }
 
-  if (collapseFix && $(table).css('border-collapse') === 'collapse') {
+  if (collapseFix && getComputedStyle(table, null).borderCollapse === 'collapse') {
     height += 1;
     width += 1;
   }
 
-  $cellection.css({
-    display: '',
-    height: height,
-    left: left,
-    top: top,
-    width: width });
+  cellection.style.display = '';
+  cellection.style.height = height;
+  cellection.style.left = left;
+  cellection.style.top = top;
+  cellection.style.width = width;
 }
 
-$(document.body).on('mousedown', mousedown);
+on(document.body, 'mousedown', mousedown);
