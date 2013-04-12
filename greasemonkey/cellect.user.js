@@ -175,7 +175,7 @@ function redraw(focus) {
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     var height = $(table).innerHeight() - 2,
-      top = tableOffset.top + parseInt($(table).css('border-top-width')) - 2;
+      top = tableOffset.top + parseFloat($(table).css('border-top-width')) - 2;
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
@@ -190,11 +190,11 @@ function redraw(focus) {
     }
 
     var height = bottomTop - topTop + $(bottom).innerHeight() - 2,
-      top = topTop + parseInt($(top).css('border-top-width')) - 2;
+      top = topTop + parseFloat($(top).css('border-top-width')) - 2;
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
-    var left = tableOffset.left + parseInt($(table).css('border-left-width')) - 2,
+    var left = tableOffset.left + parseFloat($(table).css('border-left-width')) - 2,
       width = $(table).innerWidth() - 2;
   } else {
     if (focusOffset.left > anchorOffset.left) {
@@ -209,7 +209,7 @@ function redraw(focus) {
         rightLeft = anchorOffset.left;
     }
 
-    var left = leftLeft + parseInt($(left).css('border-left-width')) - 2,
+    var left = leftLeft + parseFloat($(left).css('border-left-width')) - 2,
       width = rightLeft - leftLeft + $(right).innerWidth() - 2;
   }
 
