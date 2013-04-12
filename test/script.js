@@ -1,18 +1,20 @@
+var browserBot = new BrowserBot();
+
 test('East', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -22,7 +24,7 @@ test('East', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -41,15 +43,15 @@ test('South', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -59,7 +61,7 @@ test('South', function () {
     equal($cellection.height(), 112, 'height');
     equal($cellection.width(), 146, 'width');
 
-    $($table[0].rows[2].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -78,15 +80,15 @@ test('West', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[0]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[0], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -96,7 +98,7 @@ test('West', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 197, 'width');
 
-    $($table[0].rows[1].cells[0]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[0], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -115,15 +117,15 @@ test('North', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[0].cells[1]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -133,7 +135,7 @@ test('North', function () {
     equal($cellection.height(), 146, 'height');
     equal($cellection.width(), 146, 'width');
 
-    $($table[0].rows[0].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -152,11 +154,12 @@ test('Mousedown', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
-    $($table[0].rows[1].cells[2]).mouseup();
-    $(document.body).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
+
+    browserBot.triggerMouseEvent(document.body, 'mousedown', true);
 
     equal($cellection.css('display'), 'none', 'display eq none');
   });
@@ -167,8 +170,8 @@ test('Stay in cell', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -176,7 +179,7 @@ test('Stay in cell', function () {
     equal($cellection.css('display'), 'none', 'display eq none');
 
     // Avoid double
-    $($table[0].rows[1].cells[1]).mouseleave();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
   });
 
 test('Leave then return to cell', function () {
@@ -185,17 +188,17 @@ test('Leave then return to cell', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
-    $($table[0].rows[1].cells[1]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseover', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -209,14 +212,14 @@ test('Leave table', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
-    $table.mouseleave();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0], 'mouseout', true);
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $(document).mouseup();
+    browserBot.triggerMouseEvent(document, 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -230,11 +233,11 @@ test('Leave then return to table', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
-    $table.mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -244,7 +247,7 @@ test('Leave then return to table', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -263,22 +266,22 @@ test('Enter table', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $(document.body).mousedown();
-    $($table[0].rows[1].cells[1]).mouseenter();
+    browserBot.triggerMouseEvent(document.body, 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseover', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -292,10 +295,12 @@ test('Shift click', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -305,7 +310,7 @@ test('Shift click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -316,6 +321,8 @@ test('Shift click', function () {
     equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Drag then shift click', function () {
@@ -324,12 +331,13 @@ test('Drag then shift click', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).mouseenter();
-    $($table[0].rows[2].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseup', true);
 
-    $($table[0].rows[1].cells[2]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -339,7 +347,7 @@ test('Drag then shift click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -350,6 +358,8 @@ test('Drag then shift click', function () {
     equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Shift drag', function () {
@@ -358,12 +368,14 @@ test('Shift drag', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
-    $($table[0].rows[2].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -373,7 +385,7 @@ test('Shift drag', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -384,6 +396,8 @@ test('Shift drag', function () {
     equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'e\tf');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Drag then shift click return to cell', function () {
@@ -392,23 +406,27 @@ test('Drag then shift click return to cell', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).mouseenter();
-    $($table[0].rows[2].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseup', true);
+
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Columns', function () {
@@ -417,17 +435,17 @@ test('Columns', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -437,7 +455,7 @@ test('Columns', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -456,17 +474,17 @@ test('Rows', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -476,7 +494,7 @@ test('Rows', function () {
     equal($cellection.height(), 112, 'height');
     equal($cellection.width(), 306, 'width');
 
-    $($table[0].rows[2].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -495,17 +513,17 @@ test('Whole table', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'none', 'display eq none');
 
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -515,7 +533,7 @@ test('Whole table', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 306, 'width');
 
-    $($table[0].rows[2].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -534,15 +552,15 @@ test('Double click then single click', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mouseleave();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -552,7 +570,7 @@ test('Double click then single click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -571,12 +589,14 @@ test('Double click then shift click', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -586,7 +606,7 @@ test('Double click then shift click', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 253, 'width');
 
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -597,6 +617,8 @@ test('Double click then shift click', function () {
     equal($cellection.width(), 253, 'width');
 
     equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Shift click column-wise', function () {
@@ -605,14 +627,15 @@ test('Shift click column-wise', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
-    $($table[0].rows[0].cells[0]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -622,7 +645,7 @@ test('Shift click column-wise', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 197, 'width');
 
-    $($table[0].rows[0].cells[0]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -633,6 +656,8 @@ test('Shift click column-wise', function () {
     equal($cellection.width(), 197, 'width');
 
     equal($('textarea').val(), 'a\tb\nd\te\ng\th');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Shift click row-wise', function () {
@@ -641,14 +666,15 @@ test('Shift click row-wise', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).mouseenter();
-    $($table[0].rows[2].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseup', true);
 
-    $($table[0].rows[0].cells[0]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -658,7 +684,7 @@ test('Shift click row-wise', function () {
     equal($cellection.height(), 146, 'height');
     equal($cellection.width(), 306, 'width');
 
-    $($table[0].rows[0].cells[0]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -669,6 +695,8 @@ test('Shift click row-wise', function () {
     equal($cellection.width(), 306, 'width');
 
     equal($('textarea').val(), 'a\tb\tc\nd\te\tf');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Shift click same column', function () {
@@ -677,14 +705,15 @@ test('Shift click same column', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[1].cells[2]).mouseenter();
-    $($table[0].rows[1].cells[2]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
-    $($table[0].rows[0].cells[1]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -694,7 +723,7 @@ test('Shift click same column', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 146, 'width');
 
-    $($table[0].rows[0].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -705,6 +734,8 @@ test('Shift click same column', function () {
     equal($cellection.width(), 146, 'width');
 
     equal($('textarea').val(), 'b\ne\nh');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Shift click same row', function () {
@@ -713,14 +744,15 @@ test('Shift click same row', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseup();
-    $($table[0].rows[1].cells[1]).mousedown();
-    $($table[0].rows[1].cells[1]).mouseleave();
-    $($table[0].rows[2].cells[1]).mouseenter();
-    $($table[0].rows[2].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseup', true);
 
-    $($table[0].rows[1].cells[0]).trigger(jQuery.Event('mousedown', { shiftKey: true }));
+    browserBot.shiftKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[0], 'mousedown', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -730,7 +762,7 @@ test('Shift click same row', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 306, 'width');
 
-    $($table[0].rows[1].cells[0]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[0], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -741,6 +773,8 @@ test('Shift click same row', function () {
     equal($cellection.width(), 306, 'width');
 
     equal($('textarea').val(), 'd\te\tf');
+
+    browserBot.shiftKeyDown = false;
   });
 
 test('Quote', function () {
@@ -748,10 +782,10 @@ test('Quote', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[0].cells[0]).mousedown();
-    $($table[0].rows[0].cells[0]).mouseleave();
-    $($table[0].rows[0].cells[1]).mouseenter();
-    $($table[0].rows[0].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
     equal($('textarea').val(), 'a\t""""');
 
@@ -763,10 +797,10 @@ test('Trim whitespace', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[0].cells[0]).mousedown();
-    $($table[0].rows[0].cells[0]).mouseleave();
-    $($table[0].rows[0].cells[1]).mouseenter();
-    $($table[0].rows[0].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
     equal($('textarea').val(), 'a\tb');
 
@@ -778,10 +812,10 @@ test('Collapse whitespace', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[0].cells[0]).mousedown();
-    $($table[0].rows[0].cells[0]).mouseleave();
-    $($table[0].rows[0].cells[1]).mouseenter();
-    $($table[0].rows[0].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
     equal($('textarea').val(), 'a\tb c');
 
@@ -794,9 +828,9 @@ test('Border collapse', function () {
 
     getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
-    $($table[0].rows[0].cells[0]).mousedown();
-    $($table[0].rows[0].cells[0]).mouseleave();
-    $($table[0].rows[0].cells[1]).mouseenter();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
@@ -806,7 +840,7 @@ test('Border collapse', function () {
     equal($cellection.height(), 78, 'height');
     equal($cellection.width(), 196, 'width');
 
-    $($table[0].rows[0].cells[1]).mouseup();
+    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
