@@ -20,11 +20,11 @@ var collapseFix = 2 - $('<td style="border: 1px solid">').appendTo($('<tr>').app
 
 function cancelDouble() { single = false }
 
-function mousedown(event) {
-  if (event.shiftKey) {
+function mousedown(evt) {
+  if (evt.shiftKey) {
     if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      if (table.contains(event.target) && !anchor.contains(event.target)) {
-        var focus = event.target;
+      if (table.contains(evt.target) && !anchor.contains(evt.target)) {
+        var focus = evt.target;
         while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== table) {
           focus = focus.parentNode;
         }
@@ -44,7 +44,7 @@ function mousedown(event) {
   } else {
     $cellection.css('display', 'none');
 
-    anchor = event.target;
+    anchor = evt.target;
     while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
       anchor = anchor.parentNode;
     }
@@ -78,7 +78,7 @@ function mousedown(event) {
   }
 }
 
-function mouseenter(event) {
+function mouseenter(evt) {
   if (this === anchor) {
     $(table).css({
       cursor: '',
@@ -92,7 +92,7 @@ function mouseenter(event) {
 
 function mouseleave() { $cellection.css('display', 'none') }
 
-function mouseup(event) {
+function mouseup(evt) {
   $(table)
     .css({
       cursor: '',
@@ -101,8 +101,8 @@ function mouseup(event) {
       mouseenter: mouseenter,
       mouseleave: mouseleave });
 
-  if (table.contains(event.target) && !anchor.contains(event.target)) {
-    var focus = event.target;
+  if (table.contains(evt.target) && !anchor.contains(evt.target)) {
+    var focus = evt.target;
     while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== table) {
       focus = focus.parentNode;
     }
