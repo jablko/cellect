@@ -1,10 +1,10 @@
+getSelection().addRange(document.createRange());
+
 var browserBot = new BrowserBot();
 
 test('East', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
@@ -41,8 +41,6 @@ test('South', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
@@ -77,8 +75,6 @@ test('South', function () {
 test('West', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
@@ -115,8 +111,6 @@ test('North', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
@@ -152,8 +146,6 @@ test('Mousedown', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
@@ -167,8 +159,6 @@ test('Mousedown', function () {
 test('Stay in cell', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -185,8 +175,6 @@ test('Stay in cell', function () {
 test('Leave then return to cell', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
@@ -210,8 +198,6 @@ test('Leave table', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
@@ -230,8 +216,6 @@ test('Leave table', function () {
 test('Leave then return to table', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
@@ -264,8 +248,6 @@ test('Enter table', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent(document.body, 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseover', true);
 
@@ -292,8 +274,6 @@ test('Enter table', function () {
 test('Shift click', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -329,8 +309,6 @@ test('Drag then shift click', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
@@ -365,8 +343,6 @@ test('Drag then shift click', function () {
 test('Shift drag', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -404,8 +380,6 @@ test('Drag then shift click return to cell', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[2].cells[1], 'mouseover', true);
@@ -432,8 +406,6 @@ test('Drag then shift click return to cell', function () {
 test('Columns', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -472,8 +444,6 @@ test('Rows', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
@@ -510,8 +480,6 @@ test('Rows', function () {
 test('Whole table', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -550,8 +518,6 @@ test('Double click then single click', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
@@ -586,8 +552,6 @@ test('Double click then single click', function () {
 test('Double click then shift click', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -624,8 +588,6 @@ test('Double click then shift click', function () {
 test('Shift click column-wise', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -664,8 +626,6 @@ test('Shift click row-wise', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
@@ -702,8 +662,6 @@ test('Shift click row-wise', function () {
 test('Shift click same column', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -742,8 +700,6 @@ test('Shift click same row', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
@@ -780,8 +736,6 @@ test('Shift click same row', function () {
 test('Quote', function () {
     var $table = $('<table><tr><td>a</td><td>"</td></tr></table>').appendTo('#fixture');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
@@ -794,8 +748,6 @@ test('Quote', function () {
 
 test('Trim whitespace', function () {
     var $table = $('<table><tr><td>a</td><td> b\n</td></tr></table>').appendTo('#fixture');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
@@ -810,8 +762,6 @@ test('Trim whitespace', function () {
 test('Collapse whitespace', function () {
     var $table = $('<table><tr><td>a</td><td>b  \n\n  \n\n  c</td></tr></table>').appendTo('#fixture');
 
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
-
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
@@ -825,8 +775,6 @@ test('Collapse whitespace', function () {
 test('Border collapse', function () {
     var $table = $('<table style="border-collapse: collapse"><tr><td>a</td><td>b</td></tr></table>').appendTo('#fixture'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
@@ -856,8 +804,6 @@ test('Border collapse', function () {
 test('Scroll', function () {
     var $table = $('#fixture table'),
       $cellection = $('div:eq(-1)');
-
-    getSelection().collapseToStart = function () { ok(true, 'collapseToStart') };
 
     scrollBy(0, 75);
 
