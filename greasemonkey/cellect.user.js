@@ -283,10 +283,10 @@ function redraw(focus) {
   }
 
   cellection.style.display = '';
-  cellection.style.height = height;
-  cellection.style.left = left;
-  cellection.style.top = top;
-  cellection.style.width = width;
+  cellection.style.height = height + 'px';
+  cellection.style.left = left + 'px';
+  cellection.style.top = top + 'px';
+  cellection.style.width = width + 'px';
 }
 
 on(document.body, 'mousedown', mousedown);
