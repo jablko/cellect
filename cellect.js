@@ -10,7 +10,7 @@ var $cellection = $('<div style="background: rgba(135, 206, 235, .7); border: 3p
   colWise = false, rowWise = false;
 
 // Firefox collapseFix eq 0, Chrome collapseFix eq 1
-var collapseFix = 1 - $('<td style="border: 1px solid; padding: 0; width: 1px">').appendTo($('<tr>').appendTo($('<table style="border-collapse: collapse; visibility: hidden">').appendTo('body'))).width();
+var collapseFix = $('<td style="border: 1px solid; padding: 0; width: 1px">').appendTo($('<tr>').appendTo($('<table style="border-collapse: collapse; visibility: hidden">').appendTo('body'))).innerWidth() - 1;
 
 function cancelDouble() { single = false }
 

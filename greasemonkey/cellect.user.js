@@ -8,13 +8,13 @@
 function innerHeight(elt) {
   var style = getComputedStyle(elt);
 
-  return parseFloat(style.paddingTop) + parseFloat(style.height) + parseFloat(style.paddingBottom);
+  return elt.offsetHeight - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth);
 }
 
 function innerWidth(elt) {
   var style = getComputedStyle(elt);
 
-  return parseFloat(style.paddingLeft) + parseFloat(style.width) + parseFloat(style.paddingRight);
+  return elt.offsetWidth - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth);
 }
 
 function offset(elt) {
@@ -64,7 +64,7 @@ elt.style.border = '1px solid';
 elt.style.padding = 0;
 elt.style.width = '1px';
 
-var collapseFix = 1 - parseFloat(getComputedStyle(elt).width);
+var collapseFix = innerWidth(elt) - 1;
 
 function cancelDouble(evt) {
   if (!evt.relatedTarget || !this.contains(evt.relatedTarget)) {
