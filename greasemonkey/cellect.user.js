@@ -17,6 +17,12 @@ function innerWidth(elt) {
   return parseFloat(style.paddingLeft) + parseFloat(style.width) + parseFloat(style.paddingRight);
 }
 
+function offset(elt) {
+  var bcr = elt.getBoundingClientRect();
+
+  return { left: bcr.left + pageXOffset, top: bcr.top + pageYOffset };
+}
+
 function off(target, type, listener) {
   target.removeEventListener(type, listener, true);
 }
@@ -98,7 +104,7 @@ function mousedown(evt) {
     }
 
     if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      anchorOffset = anchor.getBoundingClientRect();
+      anchorOffset = offset(anchor);
 
       table = anchor.parentNode;
       while (table.nodeName.toLowerCase() !== 'table') {
@@ -113,7 +119,7 @@ function mousedown(evt) {
 
       if (single) {
         double = true;
-        tableOffset = table.getBoundingClientRect();
+        tableOffset = offset(table);
       } else {
         single = true;
         double = false;
@@ -235,7 +241,7 @@ function redraw(focus) {
 
   getSelection().collapseToStart();
 
-  var focusOffset = focus.getBoundingClientRect();
+  var focusOffset = offset(focus);
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     var height = innerHeight(table) - 2,
