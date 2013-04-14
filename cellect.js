@@ -170,6 +170,15 @@ function redraw(focus) {
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     var height = $(table).innerHeight() - 2,
       top = tableOffset.top + parseFloat($(table).css('border-top-width')) - 2;
+
+    if ($(table).css('border-collapse') === 'collapse') {
+      if (collapseFix) {
+        height -= 2;
+        top += 1;
+      } else {
+        height -= 1;
+      }
+    }
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
@@ -185,11 +194,24 @@ function redraw(focus) {
 
     var height = bottomTop - topTop + $(bottom).innerHeight() - 2,
       top = topTop + parseFloat($(top).css('border-top-width')) - 2;
+
+    if (collapseFix && $(table).css('border-collapse') === 'collapse') {
+      height += 1;
+    }
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
     var left = tableOffset.left + parseFloat($(table).css('border-left-width')) - 2,
       width = $(table).innerWidth() - 2;
+
+    if ($(table).css('border-collapse') === 'collapse') {
+      if (collapseFix) {
+        left += 1;
+        width -= 2;
+      } else {
+        width -= 1;
+      }
+    }
   } else {
     if (focusOffset.left > anchorOffset.left) {
       var left = anchor,
@@ -205,11 +227,10 @@ function redraw(focus) {
 
     var left = leftLeft + parseFloat($(left).css('border-left-width')) - 2,
       width = rightLeft - leftLeft + $(right).innerWidth() - 2;
-  }
 
-  if (collapseFix && $(table).css('border-collapse') === 'collapse') {
-    height += 1;
-    width += 1;
+    if (collapseFix && $(table).css('border-collapse') === 'collapse') {
+      width += 1;
+    }
   }
 
   $cellection.css({

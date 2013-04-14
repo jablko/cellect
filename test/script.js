@@ -773,32 +773,63 @@ test('Collapse whitespace', function () {
   });
 
 test('Border collapse', function () {
-    var $table = $('<table style="border-collapse: collapse"><tr><td>a</td><td>b</td></tr></table>').appendTo('#fixture'),
+    var $table = $('#fixture table').css('border-collapse', 'collapse'),
       $cellection = $('div:eq(-1)');
 
-    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
-    browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
-    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+
+    equal($table.css('cursor'), 'cell', 'cursor eq cell');
+    equal($table.css('user-select'), 'none', 'user-select eq none');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 185, top: 112 }, 'offset');
+    equal($cellection.height(), 66, 'height');
+    equal($cellection.width(), 252, 'width');
+
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 185, top: 112 }, 'offset');
+    equal($cellection.height(), 66, 'height');
+    equal($cellection.width(), 252, 'width');
+
+    $table.css('border-collapse', '');
+  });
+
+test('Border collapse whole table', function () {
+    var $table = $('#fixture table').css('border-collapse', 'collapse'),
+      $cellection = $('div:eq(-1)');
+
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[2], 'mouseover', true);
 
     equal($table.css('cursor'), 'cell', 'cursor eq cell');
     equal($table.css('user-select'), 'none', 'user-select eq none');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 135, top: 31 }, 'offset');
-    equal($cellection.height(), 78, 'height');
-    equal($cellection.width(), 196, 'width');
+    equal($cellection.height(), 194, 'height');
+    equal($cellection.width(), 302, 'width');
 
-    browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
+    browserBot.triggerMouseEvent($table[0].rows[2].cells[2], 'mouseup', true);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
 
     equal($cellection.css('display'), 'block', 'display eq block');
     deepEqual($cellection.offset(), { left: 135, top: 31 }, 'offset');
-    equal($cellection.height(), 78, 'height');
-    equal($cellection.width(), 196, 'width');
+    equal($cellection.height(), 194, 'height');
+    equal($cellection.width(), 302, 'width');
 
-    $table.remove();
+    $table.css('border-collapse', '');
   });
 
 test('Scroll', function () {

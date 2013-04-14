@@ -246,6 +246,15 @@ function redraw(focus) {
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
     var height = innerHeight(table) - 2,
       top = tableOffset.top + parseFloat(getComputedStyle(table, null).borderTopWidth) - 2;
+
+    if (getComputedStyle(table, null).borderCollapse === 'collapse') {
+      if (collapseFix) {
+        height -= 2;
+        top += 1;
+      } else {
+        height -= 1;
+      }
+    }
   } else {
     if (focusOffset.top > anchorOffset.top) {
       var bottom = focus,
@@ -261,11 +270,24 @@ function redraw(focus) {
 
     var height = bottomTop - topTop + innerHeight(bottom) - 2,
       top = topTop + parseFloat(getComputedStyle(top, null).borderTopWidth) - 2;
+
+    if (collapseFix && getComputedStyle(table, null).borderCollapse === 'collapse') {
+      height += 1;
+    }
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
     var left = tableOffset.left + parseFloat(getComputedStyle(table, null).borderLeftWidth) - 2,
       width = innerWidth(table) - 2;
+
+    if (getComputedStyle(table, null).borderCollapse === 'collapse') {
+      if (collapseFix) {
+        left += 1;
+        width -= 2;
+      } else {
+        width -= 1;
+      }
+    }
   } else {
     if (focusOffset.left > anchorOffset.left) {
       var left = anchor,
@@ -281,11 +303,10 @@ function redraw(focus) {
 
     var left = leftLeft + parseFloat(getComputedStyle(left, null).borderLeftWidth) - 2,
       width = rightLeft - leftLeft + innerWidth(right) - 2;
-  }
 
-  if (collapseFix && getComputedStyle(table, null).borderCollapse === 'collapse') {
-    height += 1;
-    width += 1;
+    if (collapseFix && getComputedStyle(table, null).borderCollapse === 'collapse') {
+      width += 1;
+    }
   }
 
   cellection.style.display = '';
