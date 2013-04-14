@@ -15,7 +15,7 @@ var collapseFix = $('<td style="border: 1px solid; padding: 0; width: 1px">').ap
 function cancelDouble() { single = false }
 
 function mousedown(evt) {
-  if (evt.shiftKey) {
+  if (evt.shiftKey && !evt.ctrlKey) {
     if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
       if (table.contains(evt.target) && !anchor.contains(evt.target)) {
         var focus = evt.target;
@@ -38,36 +38,40 @@ function mousedown(evt) {
   } else {
     $cellection.css('display', 'none');
 
-    anchor = evt.target;
-    while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
-      anchor = anchor.parentNode;
-    }
-
-    if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      anchorOffset = $(anchor).offset();
-
-      table = anchor.parentNode;
-      while (table.nodeName.toLowerCase() !== 'table') {
-        table = table.parentNode;
+    if (!evt.shiftKey) {
+      anchor = evt.target;
+      while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
+        anchor = anchor.parentNode;
       }
 
-      $(table).on('mouseenter', 'td,th', mouseenter);
-      $(document).one('mouseup', mouseup);
+      if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
+        anchorOffset = $(anchor).offset();
 
-      clearTimeout(timeout);
-      timeout = setTimeout(cancelDouble, 400);
+        table = anchor.parentNode;
+        while (table.nodeName.toLowerCase() !== 'table') {
+          table = table.parentNode;
+        }
 
-      if (single) {
-        double = true;
-        tableOffset = $(table).offset();
-      } else {
-        single = true;
-        double = false;
+        if (!evt.ctrlKey) {
+          $(table).on('mouseenter', 'td,th', mouseenter);
+          $(document).one('mouseup', mouseup);
 
-        $(anchor).one('mouseleave', cancelDouble);
+          clearTimeout(timeout);
+          timeout = setTimeout(cancelDouble, 400);
+
+          if (single) {
+            double = true;
+            tableOffset = $(table).offset();
+          } else {
+            single = true;
+            double = false;
+
+            $(anchor).one('mouseleave', cancelDouble);
+          }
+        }
+
+        colWise = rowWise = false;
       }
-
-      colWise = rowWise = false;
     }
   }
 }

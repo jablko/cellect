@@ -75,7 +75,7 @@ function cancelDouble(evt) {
 }
 
 function mousedown(evt) {
-  if (evt.shiftKey) {
+  if (evt.shiftKey && !evt.ctrlKey) {
     if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
       if (table.contains(evt.target) && !anchor.contains(evt.target)) {
         var focus = evt.target;
@@ -98,36 +98,40 @@ function mousedown(evt) {
   } else {
     cellection.style.display = 'none';
 
-    anchor = evt.target;
-    while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
-      anchor = anchor.parentNode;
-    }
-
-    if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      anchorOffset = offset(anchor);
-
-      table = anchor.parentNode;
-      while (table.nodeName.toLowerCase() !== 'table') {
-        table = table.parentNode;
+    if (!evt.shiftKey) {
+      anchor = evt.target;
+      while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
+        anchor = anchor.parentNode;
       }
 
-      on(table, 'mouseover', mouseenter);
-      on(document, 'mouseup', mouseup);
+      if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
+        anchorOffset = offset(anchor);
 
-      clearTimeout(timeout);
-      timeout = setTimeout(function () { single = false }, 400);
+        table = anchor.parentNode;
+        while (table.nodeName.toLowerCase() !== 'table') {
+          table = table.parentNode;
+        }
 
-      if (single) {
-        double = true;
-        tableOffset = offset(table);
-      } else {
-        single = true;
-        double = false;
+        if (!evt.ctrlKey) {
+          on(table, 'mouseover', mouseenter);
+          on(document, 'mouseup', mouseup);
 
-        on(anchor, 'mouseout', cancelDouble);
+          clearTimeout(timeout);
+          timeout = setTimeout(function () { single = false }, 400);
+
+          if (single) {
+            double = true;
+            tableOffset = offset(table);
+          } else {
+            single = true;
+            double = false;
+
+            on(anchor, 'mouseout', cancelDouble);
+          }
+        }
+
+        colWise = rowWise = false;
       }
-
-      colWise = rowWise = false;
     }
   }
 }

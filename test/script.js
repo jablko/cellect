@@ -862,3 +862,33 @@ test('Scroll', function () {
 
     equal($('textarea').val(), 'e\tf');
   });
+
+test('Control', function () {
+    var $table = $('#fixture table'),
+      $cellection = $('div:eq(-1)');
+
+    browserBot.controlKeyDown = true;
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
+
+    equal($cellection.css('display'), 'none', 'display eq none');
+
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
+
+    equal($cellection.css('display'), 'none', 'display eq none');
+
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
+
+    equal($cellection.css('display'), 'none', 'display eq none');
+
+    browserBot.controlKeyDown = false;
+  });
