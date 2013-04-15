@@ -3,14 +3,35 @@
 // http://stackoverflow.com/questions/5598743/finding-elements-position-relative-to-the-document
 
 // http://stackoverflow.com/questions/3680429/click-through-a-div-to-underlying-elements
-var $cellection = $('<div style="background: rgba(135, 206, 235, .7); border: 3px double; display: none; pointer-events: none; position: absolute; z-index: 32767">').appendTo(document.body),
-  $textarea = $('<textarea style="position: absolute; top: -32767px">').appendTo(document.body),
+var $cellection = $('<div>')
+    .css({
+      background: 'rgba(135, 206, 235, .7)',
+      border: '3px double',
+      display: 'none',
+      'pointer-events': 'none',
+      position: 'absolute',
+      'z-index': 32767 })
+    .appendTo(document.body),
+  $textarea = $('<textarea>')
+    .css({
+      position: 'absolute',
+      top: -32767 })
+    .appendTo(document.body),
   anchor, anchorOffset, table,
   single = false, double = false, timeout, tableOffset,
   colWise = false, rowWise = false;
 
 // Firefox collapseFix eq 0, Chrome collapseFix eq 1
-var collapseFix = $('<td style="border: 1px solid; padding: 0; width: 1px">').appendTo($('<tr>').appendTo($('<table style="border-collapse: collapse; visibility: hidden">').appendTo('body'))).innerWidth() - 1;
+var collapseFix = $('<td>')
+  .css({
+    border: '1px solid',
+    padding: 0,
+    width: 1 })
+  .appendTo($('<tr>').appendTo($('<table>')
+    .css({
+      'border-collapse': 'collapse',
+      visibility: 'hidden' })
+    .appendTo(document.body))).innerWidth() - 1;
 
 function cancelDouble() { single = false }
 

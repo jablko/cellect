@@ -14,9 +14,13 @@ jQuery(function ($) {
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
 
     if ($table.css('cursor') === 'cell') {
-      $('<div style="background: #0f0">Checking <strong>installed</strong> script...</div>').prependTo(document.body);
+      $('<div>Checking <strong>installed</strong> script...</div>')
+        .css('background', '#0f0')
+        .prependTo(document.body);
     } else {
-      $('<div style="background: #f00">Checking <strong>development</strong> script...</div>').prependTo(document.body);
+      $('<div>Checking <strong>development</strong> script...</div>')
+        .css('background', '#f00')
+        .prependTo(document.body);
 
       $('<script src="../cellect.user.js">').appendTo(document.body);
     }
