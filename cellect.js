@@ -7,6 +7,7 @@ var $cellection = $('<div>')
     .css({
       background: 'rgba(135, 206, 235, .7)',
       border: '3px double',
+      'box-sizing': 'content-box',
       display: 'none',
       'pointer-events': 'none',
       position: 'absolute',

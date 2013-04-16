@@ -37,6 +37,9 @@ function on(target, type, listener) {
 var cellection = document.createElement('div');
 cellection.style.background = 'rgba(135, 206, 235, .7)';
 cellection.style.border = '3px double';
+cellection.style.boxSizing = 'content-box';
+cellection.style.MozBoxSizing = 'content-box';
+cellection.style.WebkitBoxSizing = 'content-box';
 cellection.style.display = 'none';
 cellection.style.pointerEvents = 'none';
 cellection.style.position = 'absolute';
