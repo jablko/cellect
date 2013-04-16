@@ -3,7 +3,7 @@
 // @homepageURL https://github.com/jablko/cellect
 // @name Cellect
 // @namespace http://nottheoilrig.com
-// @version 1.0
+// @version 1.0.1
 // ==/UserScript==
 
 function innerHeight(elt) {
