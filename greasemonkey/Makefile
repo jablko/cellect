@@ -9,7 +9,7 @@ manifest.json: cellect.user.js
 	  n; \
 	  /\/\/ ==\/UserScript==/ { \
 	    g; \
-	    s/^/{ "\"manifest_version\"": 2/; \
+	    s/^/{ "\"content_scripts\"": [{ "\"js\"": ["\"cellect.user.js\""]\n    "\"matches\"": ["\"\<all_urls\>\""] }]\n  "\"manifest_version\"": 2/; \
 	    s/\n/,\n/g; \
 	    s/$$/ }/; \
 	    p; \
