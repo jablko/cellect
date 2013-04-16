@@ -16,6 +16,7 @@ manifest.json: cellect.user.js
 	    q; \
 	  }; \
 	  s/\/\/ @description \(.*\)/  "\"description\"": "\"\\1\""/; \
+	  s/\/\/ @homepageURL \(.*\)/  "\"homepage_url\"": "\"\\1\""/; \
 	  s/\/\/ @name \(.*\)/  "\"name\"": "\"\\1\""/; \
 	  s/\/\/ @version \(.*\)/  "\"version\"": "\"\\1\""/; \
 	  T metadata; \

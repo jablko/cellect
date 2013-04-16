@@ -1,5 +1,6 @@
 // ==UserScript==
 // @description Select tables like cells in a spreadsheet. Double-click to select rows, columns, or a whole table.
+// @homepageURL https://github.com/jablko/cellect
 // @name Cellect
 // @namespace http://nottheoilrig.com
 // @version 1.0
