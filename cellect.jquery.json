@@ -1,6 +1,6 @@
 { "author": { "name": "Jack Bates" },
   "dependencies": { "jquery": ">=1.7" },
-  "description": "Select tables like cells in a spreadsheet. Double-click to select rows, columns, or a whole table.",
+  "description": "Select tables the same way you cells in a spreadsheet.",
   "keywords": ["selection", "spreadsheet", "table"],
   "licenses": [{ "type": "MIT",
     "url": "http://opensource.org/licenses/MIT" }],
