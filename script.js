@@ -24,4 +24,31 @@ jQuery(function ($) {
 
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
   });
+
+  var $iframe = $('iframe');
+  Popcorn.youtube($('<div>')
+        .height($iframe.height())
+        .width($iframe.width())
+        .replaceAll($iframe)[0],
+      $iframe.attr('src'))
+    .subtitle({
+      end: 8,
+      start: 2,
+      text: 'Select tables' })
+    .subtitle({
+      end: 18,
+      start: 9,
+      text: 'Copy and paste' })
+    .subtitle({
+      end: 32,
+      start: 29,
+      text: 'Double click to select the whole table' })
+    .subtitle({
+      end: 36,
+      start: 32,
+      text: 'Or select rows or columns' })
+    .subtitle({
+      end: 42,
+      start: 37,
+      text: 'Shift click to extend the selection' });
 });
