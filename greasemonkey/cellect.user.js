@@ -1,6 +1,6 @@
 // ==UserScript==
 // @description Select tables the same way you select cells in a spreadsheet.
-// @homepageURL https://github.com/jablko/cellect
+// @homepageURL http://nottheoilrig.com/cellect
 // @name Cellect
 // @namespace http://nottheoilrig.com
 // @version 1.0.1
