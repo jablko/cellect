@@ -10,7 +10,7 @@
    o  <a href=https://raw.github.com/jablko/cellect/master/cellect.js>
       A JavaScript</a> you can install in your web page,
 
-   o  <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery-latest.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
+   o  <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
       A bookmarklet</a> you can run on any page,
 
    o  A Greasemonkey
@@ -83,7 +83,7 @@
    toolbar:
 
    o  jQuery version:
-      <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery-latest.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
+      <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
       Select tables</a>
 
    o  Non-jQuery version:
@@ -184,7 +184,7 @@
 
    Hopefully even more data will get shared in the form of tables.
 
-   <script src=http://code.jquery.com/jquery-latest.min.js></script>
+   <script src=http://code.jquery.com/jquery.min.js></script>
 
    <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/htmlutils.js></script>
    <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/selenium-browserbot.js></script>
