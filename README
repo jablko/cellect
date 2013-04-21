@@ -1,6 +1,9 @@
    <link href=https://chrome.google.com/webstore/detail/nbcoeiihmfepcagkdeoodgnegkddcpop rel=chrome-webstore-item>
+   <link href=bootstrap.min.css rel=stylesheet>
 
                              Cellect
+
+   <div class=container>
 
    Lets you select tables the same way you select cells in a
    spreadsheet.
@@ -183,6 +186,8 @@
    </a>.
 
    Hopefully even more data will get shared in the form of tables.
+
+   </div>
 
    <script src=http://code.jquery.com/jquery.min.js></script>
 
