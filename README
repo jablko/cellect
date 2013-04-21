@@ -1,0 +1,191 @@
+   <link href=https://chrome.google.com/webstore/detail/nbcoeiihmfepcagkdeoodgnegkddcpop rel=chrome-webstore-item>
+
+                             Cellect
+
+   Lets you select tables the same way you select cells in a
+   spreadsheet.
+
+   It's:
+
+   o  <a href=https://raw.github.com/jablko/cellect/master/cellect.js>
+      A JavaScript</a> you can install in your web page,
+
+   o  <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery-latest.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
+      A bookmarklet</a> you can run on any page,
+
+   o  A Greasemonkey
+      <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
+      user script</a> and a
+      <a href=https://chrome.google.com/webstore/detail/cellect/nbcoeiihmfepcagkdeoodgnegkddcpop>
+      Chrome extension</a>.
+
+
+1.  Screencast
+
+   <iframe allowfullscreen frameborder=0 height=360 src="http://www.youtube.com/embed/qyJOVXiksws?feature=player_detailpage" width=640>
+
+
+2.  Demo
+
+   <table><thead>
+      <tr><th>First Name</th><th>Last Name</th><th>Job Title</th><th>
+         Favorite Color</th><th>Wars or Trek?</th><th>Porn Name</th>
+         <th>Date of Birth</th><th>Dream Vacation City</th><th>GPA
+         </th><th>Arbitrary Data</th></tr>
+   </thead><tbody>
+      <tr><td>James</td><td>Matman</td><td>Chief Sandwich Eater</td>
+         <td>Lettuce Green</td><td>Trek</td><td>Digby Green</td><td>
+         January 13, 1979</td><td>Gotham City</td><td>3.1</td><td>
+         RBX-12</td></tr>
+      <tr><td>The</td><td>Tick</td><td>Crimefighter Sorta</td><td>Blue
+         </td><td>Wars</td><td>John Smith</td><td>July 19, 1968</td>
+         <td>Athens</td><td>N/A</td><td>Edlund, Ben (July 1996).</td>
+         </tr>
+      <tr><td>Jokey</td><td>Smurf</td><td>Giving Exploding Presents
+         </td><td>Smurflow</td><td>Smurf</td><td>Smurflane Smurfmutt
+         </td><td>Smurfuary Smurfteenth, 1945</td><td>New Smurf City
+         </td><td>4.Smurf</td><td>One</td></tr>
+      <tr><td>Cindy</td><td>Beyler</td><td>Sales Representative</td>
+         <td>Red</td><td>Wars</td><td>Lori Quivey</td><td>July 5, 1956
+         </td><td>Paris</td><td>3.4</td><td>3451</td></tr>
+      <tr><td>Captain</td><td>Cool</td><td>Tree Crusher</td><td>Blue
+         </td><td>Wars</td><td>Steve 42nd</td><td>December 13, 1982
+         </td><td>Las Vegas</td><td>1.9</td><td>Under the couch</td>
+         </tr>
+   </tbody></table>
+
+
+3.  Script
+
+   There are two versions of the script, one that depends on jQuery
+   and the other that doesn't:
+
+   o  <a href=https://raw.github.com/jablko/cellect/master/cellect.js>
+      jQuery version</a>.
+
+   o  <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
+      Non-jQuery version</a>.
+
+   The jQuery version supports more browsers, whereas the non-jQuery
+   version adds less code to each page and is easier to distribute as
+   a Chrome extension.  The non-jQuery version invokes web standards
+   directly and supports Firefox and Chrome.  It works well as a
+   bookmarklet or a user script where, once installed, cross-browser
+   support isn't an issue.
+
+   It's also available as a
+   <a href=http://plugins.jquery.com/cellect/>a jQuery plugin</a>.
+
+
+4.  Bookmarklet
+
+   Bookmark one of these two versions, or drag it to your bookmarks
+   toolbar:
+
+   o  jQuery version:
+      <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery-latest.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
+      Select tables</a>
+
+   o  Non-jQuery version:
+      <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js'})()">
+      Select tables</a>
+
+
+5.  Greasemonkey
+
+   Here is
+   <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
+   a user script</a> for
+   <a href=https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/>
+   Greasemonkey</a> or Chrome.
+
+   Install the Greasemonkey
+   <a href=https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/>
+   Firefox extension</a>, then
+   <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
+   install the script</a>.
+
+   Chrome supports user scripts out of the box, but recent versions
+   will
+   <a href=http://support.google.com/chrome_webstore/answer/2664769>
+   only allow you</a> to install them from
+   <a href=https://chrome.google.com/webstore/detail/cellect/nbcoeiihmfepcagkdeoodgnegkddcpop>
+   the Chrome Web Store</a> by default.
+
+   You can also <a href=http://userscripts.org/scripts/show/165121>get
+   the script</a> from Userscripts.org.
+
+
+6.  GitHub
+
+   <a href=https://github.com/jablko/cellect>Fork on GitHub</a>.
+
+
+7.  Features
+
+   o  Shift click to extend the selection.
+
+   o  Double click to select rows, columns, or a whole table.
+
+   Currently this is a
+   <a href=http://en.wikipedia.org/wiki/Minimum_viable_product>minimum
+   product</a>, hopefully it's viable.  No work has been done on
+   interaction with colspans or rowspans, or interaction with nested
+   tables.
+
+   In future it might:
+
+   o  Support using arrow keys to extend the selection, the way you
+      might expect.
+
+   o  Support control click to select irregular regions.
+
+   o  Enable other scripts to add behavior when cells in specialized
+      tables are selected.
+
+
+8.  Why?
+
+   <a href=http://en.wikipedia.org/wiki/Create,_read,_update_and_delete>
+   CRUD</a> webapps are frequently built for jobs that users
+   previously addressed with spreadsheets.  Despite the advantages of
+   webapps, venerable spreadsheets still deliver great features and
+   user experience.  Hopefully this script improves integration
+   between web pages and spreadsheets.  With it you should be able to
+   scrape or export any table on the web.
+
+   There are also a lot of other great tools to integrate spreadsheet
+   features with webapps:
+
+   o  <a href=http://datatables.net/>DataTables</a>
+
+   o  <a href=http://handsontable.com/>Handsontable</a>
+
+   o  <a href=http://jtable.org/>jTable</a>
+
+   o  <a href=http://www.trirand.com/blog/>jqGrid</a>
+
+   o  <a href=http://www.pontikis.net/labs/jui_datagrid/>jui_datagrid
+      </a>
+
+   o  <a href=http://paramquery.com/>ParamQuery</a>
+
+   o  <a href=https://github.com/mleibman/SlickGrid>SlickGrid</a>
+
+   And there is at least one Firefox extension to enhance tables on
+   any web page: <a href=http://mingyi.org/TableTools2/>TableTools2
+   </a>.  And Firefox lets you select tables out of the box, by
+   holding down the control key.
+
+   There are also web-based spreadsheets like
+   <a href=http://docs.google.com/spreadsheet>Google Spreadsheet</a>
+   and <a href=https://github.com/DanBricklin/socialcalc>SocialCalc
+   </a>.
+
+   Hopefully even more data will get shared in the form of tables.
+
+   <script src=http://code.jquery.com/jquery-latest.min.js></script>
+   <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/htmlutils.js></script>
+   <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/selenium-browserbot.js></script>
+   <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/selenium-logging.js></script>
+   <script src=script.js></script>
