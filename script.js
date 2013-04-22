@@ -11,7 +11,7 @@ jQuery(function ($) {
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
 
     if ($table.css('cursor') === 'cell') {
-      $('<div class="btn btn-success" disabled>Already installed.</div>').insertBefore('h2:eq(0),h2:eq(5)');
+      $('<button class="btn btn-success" disabled>Already installed.</button>').insertBefore('h2:eq(0),h2:eq(5)');
     } else {
       if (window.chrome && window.chrome.webstore.install) {
         $('<button class="btn btn-primary">Add to Chrome</button>')
