@@ -3,7 +3,7 @@
 // @homepageURL http://nottheoilrig.com/cellect
 // @name Cellect
 // @namespace http://nottheoilrig.com
-// @version 1.0.1
+// @version 1.0.2
 // ==/UserScript==
 
 function innerHeight(elt) {
