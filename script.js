@@ -11,10 +11,10 @@ jQuery(function ($) {
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
 
     if ($table.css('cursor') === 'cell') {
-      $('<div>Already installed.</div>').insertBefore('h2:eq(0),h2:eq(5)');
+      $('<div class="btn btn-success" disabled>Already installed.</div>').insertBefore('h2:eq(0),h2:eq(5)');
     } else {
       if (window.chrome && window.chrome.webstore.install) {
-        $('<button>Add to Chrome</button>')
+        $('<button class="btn btn-primary">Add to Chrome</button>')
           .on('click', function () { chrome.webstore.install() })
           .insertBefore('h2:eq(0),h2:eq(5)');
       }
