@@ -34,21 +34,26 @@ jQuery(function ($) {
     .subtitle({
       end: 8,
       start: 2,
+      target: 'subtitles',
       text: 'Select tables' })
     .subtitle({
       end: 18,
       start: 9,
+      target: 'subtitles',
       text: 'Copy and paste' })
     .subtitle({
       end: 32,
       start: 29,
+      target: 'subtitles',
       text: 'Double click to select the whole table' })
     .subtitle({
       end: 36,
       start: 32,
+      target: 'subtitles',
       text: 'Or select rows or columns' })
     .subtitle({
-      end: 42,
+      end: 43,
       start: 37,
+      target: 'subtitles',
       text: 'Shift click to extend the selection' });
 });

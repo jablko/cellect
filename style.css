@@ -1,0 +1,9 @@
+#subtitles {
+  text-shadow: none;
+}
+
+#subtitles * {
+  background: rgba(0, 0, 0, .7);
+  border-radius: 6px;
+  padding: 2px 10px;
+}
