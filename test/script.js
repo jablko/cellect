@@ -930,3 +930,25 @@ test('Control', function () {
 
     browserBot.controlKeyDown = false;
   });
+
+test('Right click', function () {
+    var $table = $('#fixture table'),
+      $cellection = $('div:eq(-1)');
+
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
+    browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
+
+    browserBot.triggerMouseEvent(document.body, 'mousedown', true, undefined, undefined, 2);
+
+    equal($table.css('cursor'), 'auto', 'cursor eq auto');
+    ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
+
+    equal($cellection.css('display'), 'block', 'display eq block');
+    deepEqual($cellection.offset(), { left: 186, top: 112 }, 'offset');
+    equal($cellection.height(), 65, 'height');
+    equal($cellection.width(), 253, 'width');
+
+    equal($('textarea').val(), 'e\tf');
+  });

@@ -79,62 +79,64 @@ function cancelDouble(evt) {
 }
 
 function mousedown(evt) {
-  if (evt.shiftKey && !evt.ctrlKey) {
-    if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      if (table.contains(evt.target) && !anchor.contains(evt.target)) {
-        var focus = evt.target;
-        while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== table) {
-          focus = focus.parentNode;
-        }
+  if (evt.button === 0) {
+    if (evt.shiftKey && !evt.ctrlKey) {
+      if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
+        if (table.contains(evt.target) && !anchor.contains(evt.target)) {
+          var focus = evt.target;
+          while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== table) {
+            focus = focus.parentNode;
+          }
 
-        if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
-          redraw(focus);
+          if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
+            redraw(focus);
+          } else {
+            cellection.style.display = 'none';
+          }
         } else {
           cellection.style.display = 'none';
         }
-      } else {
-        cellection.style.display = 'none';
+
+        on(table, 'mouseover', mouseenter);
+        on(document, 'mouseup', mouseup);
       }
+    } else {
+      cellection.style.display = 'none';
 
-      on(table, 'mouseover', mouseenter);
-      on(document, 'mouseup', mouseup);
-    }
-  } else {
-    cellection.style.display = 'none';
-
-    if (!evt.shiftKey) {
-      anchor = evt.target;
-      while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
-        anchor = anchor.parentNode;
-      }
-
-      if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-        anchorOffset = offset(anchor);
-
-        table = anchor.parentNode;
-        while (table.nodeName.toLowerCase() !== 'table') {
-          table = table.parentNode;
+      if (!evt.shiftKey) {
+        anchor = evt.target;
+        while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
+          anchor = anchor.parentNode;
         }
 
-        if (!evt.ctrlKey) {
-          on(table, 'mouseover', mouseenter);
-          on(document, 'mouseup', mouseup);
+        if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
+          anchorOffset = offset(anchor);
 
-          clearTimeout(timeout);
-          timeout = setTimeout(function () { single = false }, 400);
-
-          if (single) {
-            double = true;
-            tableOffset = offset(table);
-          } else {
-            single = true;
-            double = false;
-
-            on(anchor, 'mouseout', cancelDouble);
+          table = anchor.parentNode;
+          while (table.nodeName.toLowerCase() !== 'table') {
+            table = table.parentNode;
           }
-        }
 
-        colWise = rowWise = false;
+          if (!evt.ctrlKey) {
+            on(table, 'mouseover', mouseenter);
+            on(document, 'mouseup', mouseup);
+
+            clearTimeout(timeout);
+            timeout = setTimeout(function () { single = false }, 400);
+
+            if (single) {
+              double = true;
+              tableOffset = offset(table);
+            } else {
+              single = true;
+              double = false;
+
+              on(anchor, 'mouseout', cancelDouble);
+            }
+          }
+
+          colWise = rowWise = false;
+        }
       }
     }
   }

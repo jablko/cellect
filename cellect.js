@@ -37,62 +37,64 @@ var collapseFix = $('<td>')
 function cancelDouble() { single = false }
 
 function mousedown(evt) {
-  if (evt.shiftKey && !evt.ctrlKey) {
-    if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-      if (table.contains(evt.target) && !anchor.contains(evt.target)) {
-        var focus = evt.target;
-        while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== table) {
-          focus = focus.parentNode;
-        }
+  if (evt.button === 0) {
+    if (evt.shiftKey && !evt.ctrlKey) {
+      if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
+        if (table.contains(evt.target) && !anchor.contains(evt.target)) {
+          var focus = evt.target;
+          while (focus.nodeName.toLowerCase() !== 'td' && focus.nodeName.toLowerCase() !== 'th' && focus !== table) {
+            focus = focus.parentNode;
+          }
 
-        if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
-          redraw(focus);
+          if (focus.nodeName.toLowerCase() === 'td' || focus.nodeName.toLowerCase() === 'th') {
+            redraw(focus);
+          } else {
+            $cellection.css('display', 'none');
+          }
         } else {
           $cellection.css('display', 'none');
         }
-      } else {
-        $cellection.css('display', 'none');
+
+        $(table).on('mouseenter', 'td,th', mouseenter);
+        $(document).one('mouseup', mouseup);
       }
+    } else {
+      $cellection.css('display', 'none');
 
-      $(table).on('mouseenter', 'td,th', mouseenter);
-      $(document).one('mouseup', mouseup);
-    }
-  } else {
-    $cellection.css('display', 'none');
-
-    if (!evt.shiftKey) {
-      anchor = evt.target;
-      while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
-        anchor = anchor.parentNode;
-      }
-
-      if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
-        anchorOffset = $(anchor).offset();
-
-        table = anchor.parentNode;
-        while (table.nodeName.toLowerCase() !== 'table') {
-          table = table.parentNode;
+      if (!evt.shiftKey) {
+        anchor = evt.target;
+        while (anchor.nodeName.toLowerCase() !== 'td' && anchor.nodeName.toLowerCase() !== 'th' && anchor !== this) {
+          anchor = anchor.parentNode;
         }
 
-        if (!evt.ctrlKey) {
-          $(table).on('mouseenter', 'td,th', mouseenter);
-          $(document).one('mouseup', mouseup);
+        if (anchor.nodeName.toLowerCase() === 'td' || anchor.nodeName.toLowerCase() === 'th') {
+          anchorOffset = $(anchor).offset();
 
-          clearTimeout(timeout);
-          timeout = setTimeout(cancelDouble, 400);
-
-          if (single) {
-            double = true;
-            tableOffset = $(table).offset();
-          } else {
-            single = true;
-            double = false;
-
-            $(anchor).one('mouseleave', cancelDouble);
+          table = anchor.parentNode;
+          while (table.nodeName.toLowerCase() !== 'table') {
+            table = table.parentNode;
           }
-        }
 
-        colWise = rowWise = false;
+          if (!evt.ctrlKey) {
+            $(table).on('mouseenter', 'td,th', mouseenter);
+            $(document).one('mouseup', mouseup);
+
+            clearTimeout(timeout);
+            timeout = setTimeout(cancelDouble, 400);
+
+            if (single) {
+              double = true;
+              tableOffset = $(table).offset();
+            } else {
+              single = true;
+              double = false;
+
+              $(anchor).one('mouseleave', cancelDouble);
+            }
+          }
+
+          colWise = rowWise = false;
+        }
       }
     }
   }
