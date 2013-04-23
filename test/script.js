@@ -4,7 +4,8 @@ var browserBot = new BrowserBot();
 
 test('East', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
@@ -34,12 +35,13 @@ test('East', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
   });
 
 test('South', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
@@ -69,12 +71,13 @@ test('South', function () {
     equal($cellection.height(), 112, 'height');
     equal($cellection.width(), 146, 'width');
 
-    equal($('textarea').val(), 'e\nh');
+    equal($textarea.val(), 'e\nh');
   });
 
 test('West', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
@@ -104,12 +107,13 @@ test('West', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 197, 'width');
 
-    equal($('textarea').val(), 'd\te');
+    equal($textarea.val(), 'd\te');
   });
 
 test('North', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
 
@@ -139,7 +143,7 @@ test('North', function () {
     equal($cellection.height(), 146, 'height');
     equal($cellection.width(), 146, 'width');
 
-    equal($('textarea').val(), 'b\ne');
+    equal($textarea.val(), 'b\ne');
   });
 
 test('Mousedown', function () {
@@ -215,7 +219,8 @@ test('Leave table', function () {
 
 test('Leave then return to table', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
@@ -241,7 +246,7 @@ test('Leave then return to table', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
   });
 
 test('Enter table', function () {
@@ -273,7 +278,8 @@ test('Enter table', function () {
 
 test('Shift click', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -300,14 +306,15 @@ test('Shift click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Drag then shift click', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
@@ -335,14 +342,15 @@ test('Drag then shift click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Shift drag', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -371,7 +379,7 @@ test('Shift drag', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
 
     browserBot.shiftKeyDown = false;
   });
@@ -405,7 +413,8 @@ test('Drag then shift click return to cell', function () {
 
 test('Columns', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -437,12 +446,13 @@ test('Columns', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
+    equal($textarea.val(), 'b\tc\ne\tf\nh\ti');
   });
 
 test('Rows', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -474,12 +484,13 @@ test('Rows', function () {
     equal($cellection.height(), 112, 'height');
     equal($cellection.width(), 306, 'width');
 
-    equal($('textarea').val(), 'd\te\tf\ng\th\ti');
+    equal($textarea.val(), 'd\te\tf\ng\th\ti');
   });
 
 test('Whole table', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -511,12 +522,13 @@ test('Whole table', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 306, 'width');
 
-    equal($('textarea').val(), 'a\tb\tc\nd\te\tf\ng\th\ti');
+    equal($textarea.val(), 'a\tb\tc\nd\te\tf\ng\th\ti');
   });
 
 test('Double click then single click', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -546,12 +558,13 @@ test('Double click then single click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
   });
 
 test('Double click then shift click', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -580,14 +593,15 @@ test('Double click then shift click', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'b\tc\ne\tf\nh\ti');
+    equal($textarea.val(), 'b\tc\ne\tf\nh\ti');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Shift click column-wise', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -617,14 +631,15 @@ test('Shift click column-wise', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 197, 'width');
 
-    equal($('textarea').val(), 'a\tb\nd\te\ng\th');
+    equal($textarea.val(), 'a\tb\nd\te\ng\th');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Shift click row-wise', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -654,14 +669,15 @@ test('Shift click row-wise', function () {
     equal($cellection.height(), 146, 'height');
     equal($cellection.width(), 306, 'width');
 
-    equal($('textarea').val(), 'a\tb\tc\nd\te\tf');
+    equal($textarea.val(), 'a\tb\tc\nd\te\tf');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Shift click same column', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -691,14 +707,15 @@ test('Shift click same column', function () {
     equal($cellection.height(), 195, 'height');
     equal($cellection.width(), 146, 'width');
 
-    equal($('textarea').val(), 'b\ne\nh');
+    equal($textarea.val(), 'b\ne\nh');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Shift click same row', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseup', true);
@@ -728,46 +745,49 @@ test('Shift click same row', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 306, 'width');
 
-    equal($('textarea').val(), 'd\te\tf');
+    equal($textarea.val(), 'd\te\tf');
 
     browserBot.shiftKeyDown = false;
   });
 
 test('Quote', function () {
-    var $table = $('<table><tr><td>a</td><td>"</td></tr></table>').appendTo('#fixture');
+    var $table = $('<table><tr><td>a</td><td>"</td></tr></table>').appendTo('#fixture'),
+    $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
-    equal($('textarea').val(), 'a\t""""');
+    equal($textarea.val(), 'a\t""""');
 
     $table.remove();
   });
 
 test('Trim whitespace', function () {
-    var $table = $('<table><tr><td>a</td><td> b\n</td></tr></table>').appendTo('#fixture');
+    var $table = $('<table><tr><td>a</td><td> b\n</td></tr></table>').appendTo('#fixture'),
+    $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
-    equal($('textarea').val(), 'a\tb');
+    equal($textarea.val(), 'a\tb');
 
     $table.remove();
   });
 
 test('Collapse whitespace', function () {
-    var $table = $('<table><tr><td>a</td><td>b  \n\n  \n\n  c</td></tr></table>').appendTo('#fixture');
+    var $table = $('<table><tr><td>a</td><td>b  \n\n  \n\n  c</td></tr></table>').appendTo('#fixture'),
+    $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[0], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseover', true);
     browserBot.triggerMouseEvent($table[0].rows[0].cells[1], 'mouseup', true);
 
-    equal($('textarea').val(), 'a\tb c');
+    equal($textarea.val(), 'a\tb c');
 
     $table.remove();
   });
@@ -872,7 +892,8 @@ test('Box sizing', function () {
 
 test('Scroll', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     scrollBy(0, 75);
 
@@ -898,7 +919,7 @@ test('Scroll', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    equal($textarea.val(), 'e\tf');
   });
 
 test('Control', function () {
@@ -933,14 +954,15 @@ test('Control', function () {
 
 test('Right click', function () {
     var $table = $('#fixture table'),
-      $cellection = $('div:eq(-1)');
+      $cellection = $('div:eq(-1)'),
+      $textarea = $('textarea');
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
-    browserBot.triggerMouseEvent(document.body, 'mousedown', true, undefined, undefined, 2);
+    browserBot.triggerMouseEvent(document.body, 'mousedown', true, 187, 113, 2);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
@@ -950,5 +972,7 @@ test('Right click', function () {
     equal($cellection.height(), 65, 'height');
     equal($cellection.width(), 253, 'width');
 
-    equal($('textarea').val(), 'e\tf');
+    deepEqual($textarea.offset(), { left: 187, top: 113 }, 'offset');
+
+    equal($textarea.val(), 'e\tf');
   });

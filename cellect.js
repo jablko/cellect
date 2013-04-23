@@ -15,12 +15,16 @@ var $cellection = $('<div>')
     .appendTo(document.body),
   $textarea = $('<textarea>')
     .css({
+      margin: 0,
+      opacity: 0,
       position: 'absolute',
-      top: -32767 })
+      top: -32767,
+      'z-index': 32767 })
     .appendTo(document.body),
   anchor, anchorOffset, table,
   single = false, double = false, timeout, tableOffset,
-  colWise = false, rowWise = false;
+  colWise = false, rowWise = false,
+  height, left, top, width;
 
 // Firefox collapseFix eq 0, Chrome collapseFix eq 1
 var collapseFix = $('<td>')
@@ -36,6 +40,17 @@ var collapseFix = $('<td>')
 
 function cancelDouble() { single = false }
 
+// http://stackoverflow.com/questions/16157351/allow-copy-current-selection-vs-deselect-when-right-click-outside-the-selecti
+function contextmenu(evt) {
+  if (evt.button === 2 && evt.pageX > left && evt.pageX < left + width + 6 && evt.pageY > top && evt.pageY < top + height + 6) {
+    $textarea.css({
+      left: evt.pageX,
+      top: evt.pageY });
+
+    setTimeout(function () { $textarea.css('top', -32767) });
+  }
+}
+
 function mousedown(evt) {
   if (evt.button === 0) {
     if (evt.shiftKey && !evt.ctrlKey) {
@@ -50,9 +65,13 @@ function mousedown(evt) {
             redraw(focus);
           } else {
             $cellection.css('display', 'none');
+
+            $(document.body).off('mousedown', contextmenu);
           }
         } else {
           $cellection.css('display', 'none');
+
+          $(document.body).off('mousedown', contextmenu);
         }
 
         $(table).on('mouseenter', 'td,th', mouseenter);
@@ -60,6 +79,8 @@ function mousedown(evt) {
       }
     } else {
       $cellection.css('display', 'none');
+
+      $(document.body).off('mousedown', contextmenu);
 
       if (!evt.shiftKey) {
         anchor = evt.target;
@@ -180,6 +201,8 @@ function mouseup(evt) {
       $textarea
         .val(rows.join('\n'))
         .select();
+
+      $(document.body).on('mousedown', contextmenu);
     }
   }
 }
@@ -196,7 +219,7 @@ function redraw(focus) {
   var focusOffset = $(focus).offset();
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
-    var height = $(table).innerHeight() - 2,
+    height = $(table).innerHeight() - 2,
       top = tableOffset.top + parseFloat($(table).css('border-top-width')) - 2;
 
     if ($(table).css('border-collapse') === 'collapse') {
@@ -209,19 +232,19 @@ function redraw(focus) {
     }
   } else {
     if (focusOffset.top > anchorOffset.top) {
-      var bottom = focus,
+      var bottomElt = focus,
         bottomTop = focusOffset.top,
-        top = anchor,
+        topElt = anchor,
         topTop = anchorOffset.top;
     } else {
-      var bottom = anchor,
+      var bottomElt = anchor,
         bottomTop = anchorOffset.top,
-        top = focus,
+        topElt = focus,
         topTop = focusOffset.top;
     }
 
-    var height = bottomTop - topTop + $(bottom).innerHeight() - 2,
-      top = topTop + parseFloat($(top).css('border-top-width')) - 2;
+    height = bottomTop - topTop + $(bottomElt).innerHeight() - 2,
+      top = topTop + parseFloat($(topElt).css('border-top-width')) - 2;
 
     if (collapseFix && $(table).css('border-collapse') === 'collapse') {
       height += 1;
@@ -229,7 +252,7 @@ function redraw(focus) {
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
-    var left = tableOffset.left + parseFloat($(table).css('border-left-width')) - 2,
+    left = tableOffset.left + parseFloat($(table).css('border-left-width')) - 2,
       width = $(table).innerWidth() - 2;
 
     if ($(table).css('border-collapse') === 'collapse') {
@@ -242,19 +265,19 @@ function redraw(focus) {
     }
   } else {
     if (focusOffset.left > anchorOffset.left) {
-      var left = anchor,
+      var leftElt = anchor,
         leftLeft = anchorOffset.left,
-        right = focus,
+        rightElt = focus,
         rightLeft = focusOffset.left;
     } else {
-      var left = focus,
+      var leftElt = focus,
         leftLeft = focusOffset.left,
-        right = anchor,
+        rightElt = anchor,
         rightLeft = anchorOffset.left;
     }
 
-    var left = leftLeft + parseFloat($(left).css('border-left-width')) - 2,
-      width = rightLeft - leftLeft + $(right).innerWidth() - 2;
+    left = leftLeft + parseFloat($(leftElt).css('border-left-width')) - 2,
+      width = rightLeft - leftLeft + $(rightElt).innerWidth() - 2;
 
     if (collapseFix && $(table).css('border-collapse') === 'collapse') {
       width += 1;

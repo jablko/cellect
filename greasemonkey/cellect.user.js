@@ -6,6 +6,8 @@
 // @version 1.0.2
 // ==/UserScript==
 
+(function () {
+
 function innerHeight(elt) {
   var style = getComputedStyle(elt);
 
@@ -49,13 +51,17 @@ cellection.style.zIndex = 32767;
 document.body.appendChild(cellection);
 
 var textarea = document.createElement('textarea');
+textarea.style.margin = 0;
+textarea.style.opacity = 0;
 textarea.style.position = 'absolute';
 textarea.style.top = '-32767px';
+textarea.style.zIndex = 32767;
 document.body.appendChild(textarea);
 
 var anchor, anchorOffset, table,
   single = false, double = false, timeout, tableOffset,
-  colWise = false, rowWise = false;
+  colWise = false, rowWise = false,
+  height, left, top, width;
 
 // Firefox collapseFix eq 0, Chrome collapseFix eq 1
 var elt = document.body.appendChild(document.createElement('table'));
@@ -78,6 +84,16 @@ function cancelDouble(evt) {
   }
 }
 
+// http://stackoverflow.com/questions/16157351/allow-copy-current-selection-vs-deselect-when-right-click-outside-the-selecti
+function contextmenu(evt) {
+  if (evt.button === 2 && evt.pageX > left && evt.pageX < left + width + 6 && evt.pageY > top && evt.pageY < top + height + 6) {
+    textarea.style.left = evt.pageX + 'px';
+    textarea.style.top = evt.pageY + 'px';
+
+    setTimeout(function () { textarea.style.top = -32767 });
+  }
+}
+
 function mousedown(evt) {
   if (evt.button === 0) {
     if (evt.shiftKey && !evt.ctrlKey) {
@@ -92,9 +108,13 @@ function mousedown(evt) {
             redraw(focus);
           } else {
             cellection.style.display = 'none';
+
+            off(document.body, 'mousedown', contextmenu);
           }
         } else {
           cellection.style.display = 'none';
+
+          off(document.body, 'mousedown', contextmenu);
         }
 
         on(table, 'mouseover', mouseenter);
@@ -102,6 +122,8 @@ function mousedown(evt) {
       }
     } else {
       cellection.style.display = 'none';
+
+      off(document.body, 'mousedown', contextmenu);
 
       if (!evt.shiftKey) {
         anchor = evt.target;
@@ -237,6 +259,8 @@ function mouseup(evt) {
 
       textarea.value = rows.join('\n');
       textarea.select();
+
+      on(document.body, 'mousedown', contextmenu);
     }
   }
 }
@@ -254,7 +278,7 @@ function redraw(focus) {
   var focusOffset = offset(focus);
 
   if ((colWise || double && focus.cellIndex !== anchor.cellIndex) && !rowWise) {
-    var height = innerHeight(table) - 2,
+    height = innerHeight(table) - 2,
       top = tableOffset.top + parseFloat(getComputedStyle(table, null).borderTopWidth) - 2;
 
     if (getComputedStyle(table, null).borderCollapse === 'collapse') {
@@ -267,19 +291,19 @@ function redraw(focus) {
     }
   } else {
     if (focusOffset.top > anchorOffset.top) {
-      var bottom = focus,
+      var bottomElt = focus,
         bottomTop = focusOffset.top,
-        top = anchor,
+        topElt = anchor,
         topTop = anchorOffset.top;
     } else {
-      var bottom = anchor,
+      var bottomElt = anchor,
         bottomTop = anchorOffset.top,
-        top = focus,
+        topElt = focus,
         topTop = focusOffset.top;
     }
 
-    var height = bottomTop - topTop + innerHeight(bottom) - 2,
-      top = topTop + parseFloat(getComputedStyle(top, null).borderTopWidth) - 2;
+    height = bottomTop - topTop + innerHeight(bottomElt) - 2,
+      top = topTop + parseFloat(getComputedStyle(topElt, null).borderTopWidth) - 2;
 
     if (collapseFix && getComputedStyle(table, null).borderCollapse === 'collapse') {
       height += 1;
@@ -287,7 +311,7 @@ function redraw(focus) {
   }
 
   if ((rowWise || double && focus.parentNode.rowIndex !== anchor.parentNode.rowIndex) && !colWise) {
-    var left = tableOffset.left + parseFloat(getComputedStyle(table, null).borderLeftWidth) - 2,
+    left = tableOffset.left + parseFloat(getComputedStyle(table, null).borderLeftWidth) - 2,
       width = innerWidth(table) - 2;
 
     if (getComputedStyle(table, null).borderCollapse === 'collapse') {
@@ -300,19 +324,19 @@ function redraw(focus) {
     }
   } else {
     if (focusOffset.left > anchorOffset.left) {
-      var left = anchor,
+      var leftElt = anchor,
         leftLeft = anchorOffset.left,
-        right = focus,
+        rightElt = focus,
         rightLeft = focusOffset.left;
     } else {
-      var left = focus,
+      var leftElt = focus,
         leftLeft = focusOffset.left,
-        right = anchor,
+        rightElt = anchor,
         rightLeft = anchorOffset.left;
     }
 
-    var left = leftLeft + parseFloat(getComputedStyle(left, null).borderLeftWidth) - 2,
-      width = rightLeft - leftLeft + innerWidth(right) - 2;
+    left = leftLeft + parseFloat(getComputedStyle(leftElt, null).borderLeftWidth) - 2,
+      width = rightLeft - leftLeft + innerWidth(rightElt) - 2;
 
     if (collapseFix && getComputedStyle(table, null).borderCollapse === 'collapse') {
       width += 1;
@@ -327,3 +351,5 @@ function redraw(focus) {
 }
 
 on(document.body, 'mousedown', mousedown);
+
+  })();
