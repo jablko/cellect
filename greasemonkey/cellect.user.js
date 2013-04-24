@@ -76,6 +76,9 @@ elt.style.width = '1px';
 
 var collapseFix = innerWidth(elt) - 1;
 
+// Synthetic mousedown doesn't deselect, so browser detection for now :-P
+var contextmenuFix = /chrome/i.test(navigator.userAgent) ? 'contextmenu' : 'mousedown';
+
 function cancelDouble(evt) {
   if (!evt.relatedTarget || !this.contains(evt.relatedTarget)) {
     off(this, 'mouseout', cancelDouble);
@@ -89,6 +92,8 @@ function contextmenu(evt) {
   if (evt.button === 2 && evt.pageX > left && evt.pageX < left + width + 6 && evt.pageY > top && evt.pageY < top + height + 6) {
     textarea.style.left = evt.pageX + 'px';
     textarea.style.top = evt.pageY + 'px';
+
+    textarea.select();
 
     setTimeout(function () { textarea.style.top = -32767 });
   }
@@ -109,12 +114,12 @@ function mousedown(evt) {
           } else {
             cellection.style.display = 'none';
 
-            off(document.body, 'mousedown', contextmenu);
+            off(document.body, contextmenuFix, contextmenu);
           }
         } else {
           cellection.style.display = 'none';
 
-          off(document.body, 'mousedown', contextmenu);
+          off(document.body, contextmenuFix, contextmenu);
         }
 
         on(table, 'mouseover', mouseenter);
@@ -123,7 +128,7 @@ function mousedown(evt) {
     } else {
       cellection.style.display = 'none';
 
-      off(document.body, 'mousedown', contextmenu);
+      off(document.body, contextmenuFix, contextmenu);
 
       if (!evt.shiftKey) {
         anchor = evt.target;
@@ -260,7 +265,7 @@ function mouseup(evt) {
       textarea.value = rows.join('\n');
       textarea.select();
 
-      on(document.body, 'mousedown', contextmenu);
+      on(document.body, contextmenuFix, contextmenu);
     }
   }
 }

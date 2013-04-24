@@ -38,14 +38,18 @@ var collapseFix = $('<td>')
       visibility: 'hidden' })
     .appendTo(document.body))).innerWidth() - 1;
 
+// Synthetic mousedown doesn't deselect, so browser detection for now :-P
+var contextmenuFix = /chrome/i.test(navigator.userAgent) ? 'contextmenu' : 'mousedown';
+
 function cancelDouble() { single = false }
 
 // http://stackoverflow.com/questions/16157351/allow-copy-current-selection-vs-deselect-when-right-click-outside-the-selecti
 function contextmenu(evt) {
   if (evt.button === 2 && evt.pageX > left && evt.pageX < left + width + 6 && evt.pageY > top && evt.pageY < top + height + 6) {
     $textarea.css({
-      left: evt.pageX,
-      top: evt.pageY });
+        left: evt.pageX,
+        top: evt.pageY })
+      .select();
 
     setTimeout(function () { $textarea.css('top', -32767) });
   }
@@ -66,12 +70,12 @@ function mousedown(evt) {
           } else {
             $cellection.css('display', 'none');
 
-            $(document.body).off('mousedown', contextmenu);
+            $(document.body).off(contextmenuFix, contextmenu);
           }
         } else {
           $cellection.css('display', 'none');
 
-          $(document.body).off('mousedown', contextmenu);
+          $(document.body).off(contextmenuFix, contextmenu);
         }
 
         $(table).on('mouseenter', 'td,th', mouseenter);
@@ -80,7 +84,7 @@ function mousedown(evt) {
     } else {
       $cellection.css('display', 'none');
 
-      $(document.body).off('mousedown', contextmenu);
+      $(document.body).off(contextmenuFix, contextmenu);
 
       if (!evt.shiftKey) {
         anchor = evt.target;
@@ -202,7 +206,7 @@ function mouseup(evt) {
         .val(rows.join('\n'))
         .select();
 
-      $(document.body).on('mousedown', contextmenu);
+      $(document.body).on(contextmenuFix, contextmenu);
     }
   }
 }
