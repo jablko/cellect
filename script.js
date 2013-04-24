@@ -13,7 +13,7 @@ jQuery(function ($) {
     if ($table.css('cursor') === 'cell') {
       $('<button class="btn btn-success" disabled>Already installed.</button>').insertBefore('h2:eq(0),h2:eq(5)');
     } else {
-      if (window.chrome && window.chrome.webstore.install) {
+      if (window.chrome && window.chrome.webstore && window.chrome.webstore.install) {
         $('<button class="btn btn-primary">Add to Chrome</button>')
           .on('click', function () { chrome.webstore.install() })
           .insertBefore('h2:eq(0),h2:eq(5)');
