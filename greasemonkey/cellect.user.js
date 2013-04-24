@@ -51,6 +51,9 @@ cellection.style.zIndex = 32767;
 document.body.appendChild(cellection);
 
 var textarea = document.createElement('textarea');
+textarea.style.borderRadius = 0;
+textarea.style.MozBorderRadius = 0;
+textarea.style.WebkitBorderRadius = 0;
 textarea.style.margin = 0;
 textarea.style.opacity = 0;
 textarea.style.position = 'absolute';

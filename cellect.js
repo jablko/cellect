@@ -15,6 +15,7 @@ var $cellection = $('<div>')
     .appendTo(document.body),
   $textarea = $('<textarea>')
     .css({
+      'border-radius': 0,
       margin: 0,
       opacity: 0,
       position: 'absolute',
