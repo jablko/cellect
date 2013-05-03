@@ -35,7 +35,7 @@ jQuery(function ($) {
       end: 8,
       start: 2,
       target: 'subtitles',
-      text: 'Select tables' })
+      text: 'Select data in tables' })
     .subtitle({
       end: 18,
       start: 9,

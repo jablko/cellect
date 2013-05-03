@@ -1,5 +1,5 @@
 // ==UserScript==
-// @description Select tables the same way you select cells in a spreadsheet.
+// @description Select data in tables the same way you select cells in a spreadsheet.
 // @homepageURL http://nottheoilrig.com/cellect
 // @name Cellect
 // @namespace http://nottheoilrig.com

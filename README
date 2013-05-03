@@ -2,15 +2,15 @@
    <link href=bootstrap.min.css rel=stylesheet>
    <link href=style.css rel=stylesheet>
 
-   <meta content="Select tables the same way you select cells in a spreadsheet." name=description>
+   <meta content="Select data in tables the same way you select cells in a spreadsheet." name=description>
    <meta content="Jack Bates" name=author>
 
                              Cellect
 
    <div class=container>
 
-   <p class=lead>Lets you select tables the same way you select cells
-   in a spreadsheet.
+   <p class=lead>Helps you select data in tables the same way you
+   select cells in a spreadsheet.
 
    It's:
 
@@ -179,6 +179,8 @@
    o  <a href=http://paramquery.com/>ParamQuery</a>
 
    o  <a href=https://github.com/mleibman/SlickGrid>SlickGrid</a>
+
+   o  <a href=http://table2csv.com/>table2csv</a>
 
    And there is at least one Firefox extension to enhance tables on
    any web page: <a href=http://mingyi.org/TableTools2/>TableTools2

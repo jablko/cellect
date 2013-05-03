@@ -2,7 +2,7 @@
   "bugs": "https://github.com/jablko/cellect/issues",
   "demo": "http://nottheoilrig.com/cellect",
   "dependencies": { "jquery": ">=1.7" },
-  "description": "Select tables the same way you cells in a spreadsheet.",
+  "description": "Select data in tables the same way you select cells in a spreadsheet.",
   "docs": "http://nottheoilrig.com/cellect",
   "homepage": "http://nottheoilrig.com/cellect",
   "keywords": ["selection", "spreadsheet", "table"],
