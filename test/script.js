@@ -962,7 +962,7 @@ test('Right click', function () {
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseover', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[2], 'mouseup', true);
 
-    browserBot.triggerMouseEvent(document.body, 'mousedown', true, 187, 113, 2);
+    browserBot.triggerMouseEvent(document.body, /chrome/i.test(navigator.userAgent) ? 'contextmenu' : 'mousedown', true, 187, 113, 2);
 
     equal($table.css('cursor'), 'auto', 'cursor eq auto');
     ok(['auto', 'text'].indexOf($table.css('user-select')) !== -1, 'user-select in auto|text');
