@@ -895,7 +895,7 @@ test('Scroll', function () {
       $cellection = $('div:eq(-1)'),
       $textarea = $('textarea');
 
-    scrollBy(0, 75);
+    scroll(0, 75);
 
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mousedown', true);
     browserBot.triggerMouseEvent($table[0].rows[1].cells[1], 'mouseout', true);
@@ -920,6 +920,8 @@ test('Scroll', function () {
     equal($cellection.width(), 253, 'width');
 
     equal($textarea.val(), 'e\tf');
+
+    scroll(0, 0);
   });
 
 test('Control', function () {
