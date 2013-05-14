@@ -141,6 +141,10 @@
    interaction with colspans or rowspans, or interaction with nested
    tables.
 
+   It doesn't work with PDF documents, but here is a
+   <a href=http://tabula.nerdpower.org/>very cool project</a> that
+   does.
+
    In future it might:
 
    o  Support using arrow keys to extend the selection, the way you
