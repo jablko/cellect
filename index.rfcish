@@ -1,8 +1,16 @@
+   <link href=https://chrome.google.com/webstore/detail/nbcoeiihmfepcagkdeoodgnegkddcpop rel=chrome-webstore-item>
+   <link href=bootstrap.min.css rel=stylesheet>
+   <link href=style.css rel=stylesheet>
+
+   <meta content="Select data in tables the same way you select cells in a spreadsheet." name=description>
+   <meta content="Jack Bates" name=author>
 
                              Cellect
 
-   Helps you select data in tables the same way you select cells in a
-   spreadsheet.
+   <div class=container>
+
+   <p class=lead>Helps you select data in tables the same way you
+   select cells in a spreadsheet.
 
    It's:
 
@@ -19,7 +27,47 @@
       Chrome extension</a>.
 
 
-1.  Script
+1.  Screencast
+
+   <iframe allowfullscreen frameborder=0 height=360 src="http://www.youtube.com/embed/qyJOVXiksws?feature=player_detailpage" width=640>
+
+
+2.  Demo
+
+   <table class="table table-bordered table-condensed table-striped">
+      <thead>
+      <tr><th>First Name</th><th>Last Name</th><th>Job Title</th><th>
+         Favorite Color</th><th>Wars or Trek?</th><th>Porn Name</th>
+         <th>Date of Birth</th><th>Dream Vacation City</th><th>GPA
+         </th><th>Arbitrary Data</th></tr>
+   </thead><tbody>
+      <tr><td>James</td><td>Matman</td><td>Chief Sandwich Eater</td>
+         <td>Lettuce Green</td><td>Trek</td><td>Digby Green</td><td>
+         January 13, 1979</td><td>Gotham City</td><td>3.1</td><td>
+         RBX-12</td></tr>
+      <tr><td>The</td><td>Tick</td><td>Crimefighter Sorta</td><td>Blue
+         </td><td>Wars</td><td>John Smith</td><td>July 19, 1968</td>
+         <td>Athens</td><td>N/A</td><td>Edlund, Ben (July 1996).</td>
+         </tr>
+      <tr><td>Jokey</td><td>Smurf</td><td>Giving Exploding Presents
+         </td><td>Smurflow</td><td>Smurf</td><td>Smurflane Smurfmutt
+         </td><td>Smurfuary Smurfteenth, 1945</td><td>New Smurf City
+         </td><td>4.Smurf</td><td>One</td></tr>
+      <tr><td>Cindy</td><td>Beyler</td><td>Sales Representative</td>
+         <td>Red</td><td>Wars</td><td>Lori Quivey</td><td>July 5, 1956
+         </td><td>Paris</td><td>3.4</td><td>3451</td></tr>
+      <tr><td>Captain</td><td>Cool</td><td>Tree Crusher</td><td>Blue
+         </td><td>Wars</td><td>Steve 42nd</td><td>December 13, 1982
+         </td><td>Las Vegas</td><td>1.9</td><td>Under the couch</td>
+         </tr>
+   </tbody></table>
+
+
+   <div class=row>
+
+   <div class=span4>
+
+3.  Script
 
    There are two versions of the script, one that depends on jQuery
    and the other that doesn't:
@@ -40,8 +88,12 @@
    It's also available as a
    <a href=http://plugins.jquery.com/cellect/>a jQuery plugin</a>.
 
+   </div>
 
-2.  Bookmarklet
+
+   <div class=span4>
+
+4.  Bookmarklet
 
    Bookmark one of these two versions, or drag it to your bookmarks
    toolbar:
@@ -54,8 +106,12 @@
       <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js'})()">
       Select tables</a>
 
+   </div>
 
-3.  Greasemonkey
+
+   <div class=span4>
+
+5.  Greasemonkey
 
    Here is
    <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
@@ -79,13 +135,12 @@
    You can also <a href=http://userscripts.org/scripts/show/165121>get
    the script</a> from Userscripts.org.
 
+   </div>
 
-4.  GitHub
-
-   Fork me <a href=https://github.com/jablko/cellect>on GitHub</a>.
+   </div>
 
 
-5.  Features
+6.  Features
 
    o  Shift click to extend the selection.
 
@@ -112,7 +167,7 @@
       tables are selected.
 
 
-6.  Why?
+7.  Why?
 
    <a href=http://en.wikipedia.org/wiki/Create,_read,_update_and_delete>
    CRUD</a> webapps are frequently built for jobs that users
@@ -153,3 +208,21 @@
    </a>.
 
    Hopefully even more data will get shared in the form of tables.
+
+   </div>
+
+   <a href=https://github.com/jablko/cellect>
+   <img alt="Fork me on GitHub" src=https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png style="position: absolute; top: 0; right: 0; border: 0;">
+   </a>
+
+   <script src=http://code.jquery.com/jquery.min.js></script>
+
+   <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/htmlutils.js></script>
+   <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/selenium-browserbot.js></script>
+   <script src=http://selenium.googlecode.com/git/javascript/selenium-core/scripts/selenium-logging.js></script>
+
+   <script src=http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js></script>
+
+   <script src=script.js></script>
+
+   <script async src=http://cellect.disqus.com/embed.js></script>
