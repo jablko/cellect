@@ -213,3 +213,5 @@
    <script src=http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js></script>
 
    <script src=script.js></script>
+
+   <script async src=http://cellect.disqus.com/embed.js></script>
