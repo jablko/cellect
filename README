@@ -6,17 +6,11 @@
 
    It's:
 
-   o  <a href=https://raw.github.com/jablko/cellect/master/cellect.js>
-      A JavaScript</a> you can install in your web page,
+   o  [A JavaScript][1] you can install in your web page,
 
-   o  <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
-      A bookmarklet</a> you can run on any page,
+   o  [A bookmarklet][2] you can run on any page,
 
-   o  A Greasemonkey
-      <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
-      user script</a> and a
-      <a href=https://chrome.google.com/webstore/detail/cellect/nbcoeiihmfepcagkdeoodgnegkddcpop>
-      Chrome extension</a>.
+   o  A Greasemonkey [user script][3] and a [Chrome extension][4].
 
 
 1.  Script
@@ -24,11 +18,9 @@
    There are two versions of the script, one that depends on jQuery
    and the other that doesn't:
 
-   o  <a href=https://raw.github.com/jablko/cellect/master/cellect.js>
-      jQuery version</a>.
+   o  [jQuery version][1].
 
-   o  <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
-      Non-jQuery version</a>.
+   o  [Non-jQuery version][3].
 
    The jQuery version supports more browsers, whereas the non-jQuery
    version adds less code to each page and is easier to distribute as
@@ -37,8 +29,7 @@
    bookmarklet or a user script where, once installed, cross-browser
    support isn't an issue.
 
-   It's also available as a
-   <a href=http://plugins.jquery.com/cellect/>a jQuery plugin</a>.
+   It's also available as a [a jQuery plugin].
 
 
 2.  Bookmarklet
@@ -46,43 +37,28 @@
    Bookmark one of these two versions, or drag it to your bookmarks
    toolbar:
 
-   o  jQuery version:
-      <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()">
-      Select tables</a>
+   o  jQuery version: [Select tables][2]
 
-   o  Non-jQuery version:
-      <a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js'})()">
-      Select tables</a>
+   o  Non-jQuery version: [Select tables][5]
 
 
 3.  Greasemonkey
 
-   Here is
-   <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
-   a user script</a> for
-   <a href=https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/>
-   Greasemonkey</a> or Chrome.
+   Here is [a user script][3] for [Greasemonkey][6] or Chrome.
 
-   Install the Greasemonkey
-   <a href=https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/>
-   Firefox extension</a>, then
-   <a href=https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js>
-   install the script</a>.
+   Install the Greasemonkey [Firefox extension][6], then [install the
+   script][3].
 
    Chrome supports user scripts out of the box, but recent versions
-   will
-   <a href=http://support.google.com/chrome_webstore/answer/2664769>
-   only allow you</a> to install them from
-   <a href=https://chrome.google.com/webstore/detail/cellect/nbcoeiihmfepcagkdeoodgnegkddcpop>
-   the Chrome Web Store</a> by default.
+   will [only allow you] to install them from [the Chrome Web
+   Store][4] by default.
 
-   You can also <a href=http://userscripts.org/scripts/show/165121>get
-   the script</a> from Userscripts.org.
+   You can also [get the script] from Userscripts.org.
 
 
 4.  GitHub
 
-   Fork me <a href=https://github.com/jablko/cellect>on GitHub</a>.
+   Fork me [on GitHub].
 
 
 5.  Features
@@ -91,15 +67,12 @@
 
    o  Double click to select rows, columns, or a whole table.
 
-   Currently this is a
-   <a href=http://en.wikipedia.org/wiki/Minimum_viable_product>minimum
-   product</a>, hopefully it's viable.  No work has been done on
-   interaction with colspans or rowspans, or interaction with nested
-   tables.
+   Currently this is a [minimum product], hopefully it's viable.  No
+   work has been done on interaction with colspans or rowspans, or
+   interaction with nested tables.
 
-   It doesn't work with PDF documents, but here is a
-   <a href=http://tabula.nerdpower.org/>very cool project</a> that
-   does.
+   It doesn't work with PDF documents, but here is a [very cool
+   project] that does.
 
    In future it might:
 
@@ -114,42 +87,101 @@
 
 6.  Why?
 
-   <a href=http://en.wikipedia.org/wiki/Create,_read,_update_and_delete>
-   CRUD</a> webapps are frequently built for jobs that users
-   previously addressed with spreadsheets.  Despite the advantages of
-   webapps, venerable spreadsheets still deliver great features and
-   user experience.  Hopefully this script improves integration
-   between web pages and spreadsheets.  With it you should be able to
-   scrape or export any table on the web.
+   [CRUD] webapps are frequently built for jobs that users previously
+   addressed with spreadsheets.  Despite the advantages of webapps,
+   venerable spreadsheets still deliver great features and user
+   experience.  Hopefully this script improves integration between web
+   pages and spreadsheets.  With it you should be able to scrape or
+   export any table on the web.
 
    There are also a lot of other great tools to integrate spreadsheet
    features with webapps:
 
-   o  <a href=http://datatables.net/>DataTables</a>
+   o  [DataTables]
 
-   o  <a href=http://handsontable.com/>Handsontable</a>
+   o  [Handsontable]
 
-   o  <a href=http://jtable.org/>jTable</a>
+   o  [jTable]
 
-   o  <a href=http://www.trirand.com/blog/>jqGrid</a>
+   o  [jqGrid]
 
-   o  <a href=http://www.pontikis.net/labs/jui_datagrid/>jui_datagrid
-      </a>
+   o  [jui_datagrid]
 
-   o  <a href=http://paramquery.com/>ParamQuery</a>
+   o  [ParamQuery]
 
-   o  <a href=https://github.com/mleibman/SlickGrid>SlickGrid</a>
+   o  [SlickGrid]
 
-   o  <a href=http://table2csv.com/>table2csv</a>
+   o  [table2csv]
 
    And there is at least one Firefox extension to enhance tables on
-   any web page: <a href=http://mingyi.org/TableTools2/>TableTools2
-   </a>.  And Firefox lets you select tables out of the box, by
-   holding down the control key.
+   any web page: [TableTools2].  And Firefox lets you select tables
+   out of the box, by holding down the control key.
 
-   There are also web-based spreadsheets like
-   <a href=http://docs.google.com/spreadsheet>Google Spreadsheet</a>
-   and <a href=https://github.com/DanBricklin/socialcalc>SocialCalc
-   </a>.
+   There are also web-based spreadsheets like [Google Spreadsheet] and
+   [SocialCalc].
 
    Hopefully even more data will get shared in the form of tables.
+
+
+   [1]         https://raw.github.com/jablko/cellect/master/cellect.js
+
+   [2]         javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://code.jquery.com/jquery.min.js';document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/cellect.js'})()
+
+   [3]         https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js
+
+   [4]         https://chrome.google.com/webstore/detail/cellect/nbcoeiihmfepcagkdeoodgnegkddcpop
+
+   [a jQuery plugin]
+               http://plugins.jquery.com/cellect/
+
+   [5]         javascript:(function(){document.body.appendChild(document.createElement('script')).src='https://raw.github.com/jablko/cellect/master/greasemonkey/cellect.user.js'})()
+
+   [6]         https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
+
+   [only allow you]
+               http://support.google.com/chrome_webstore/answer/2664769
+
+   [get the script]
+               http://userscripts.org/scripts/show/165121
+
+   [on GitHub]
+               https://github.com/jablko/cellect
+
+   [minimum product]
+               http://en.wikipedia.org/wiki/Minimum_viable_product
+
+   [very cool project]
+               http://tabula.nerdpower.org/
+
+   [CRUD]      http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
+   [DataTables]
+               http://datatables.net/
+
+   [Handsontable]
+               http://handsontable.com/
+
+   [jTable]    http://jtable.org/
+
+   [jqGrid]    http://www.trirand.com/blog/
+
+   [jui_datagrid]
+               http://www.pontikis.net/labs/jui_datagrid/
+
+   [ParamQuery]
+               http://paramquery.com/
+
+   [SlickGrid]
+               https://github.com/mleibman/SlickGrid
+
+   [table2csv]
+               http://table2csv.com/
+
+   [TableTools2]
+               http://mingyi.org/TableTools2/
+
+   [Google Spreadsheet]
+               http://docs.google.com/spreadsheet
+
+   [SocialCalc]
+               https://github.com/DanBricklin/socialcalc
