@@ -3,7 +3,7 @@
 // @homepageURL http://nottheoilrig.com/cellect
 // @name Cellect
 // @namespace http://nottheoilrig.com
-// @version 1.0.4
+// @version 1.0.5
 // ==/UserScript==
 
 (function () {
