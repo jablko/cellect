@@ -1,3 +1,9 @@
+// Select data in tables the same way you select celles in a spreadsheet.
+// http://nottheoilrig.com/cellect
+//
+// Released under the MIT license.
+// http://opensource.org/licenses/MIT
+
 (function () {
 
 // http://stackoverflow.com/questions/5598743/finding-elements-position-relative-to-the-document
